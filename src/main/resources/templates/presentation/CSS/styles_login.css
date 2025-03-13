@@ -49,9 +49,22 @@ header>div{
     padding: 2%;
 }
 .login{
-    width: 40%;
+    width: 30%;
     margin: auto;
 }
+
+.confirmarCita{
+    position: relative;
+    display: flex;
+    /*align-items: center; !* Asegura que el texto esté centrado verticalmente *!*/
+    /*justify-content: center; !* Centra horizontalmente *!*/
+    width: 40%;
+    margin: auto;
+    top: 90px; /* Mueve el div 100px hacia abajo */
+
+}
+
+
 .d_flex{
     display: flex;
 }
