@@ -49,7 +49,8 @@ header>div{
     padding: 2%;
 }
 .login{
-    width: 30%;
+    width: 35%;
+    height: 70%;
     margin: auto;
 }
 
@@ -73,4 +74,30 @@ input[type="submit"] {
     background-color: #17a2b8;
     font-size: 100%;
     color:white;
+}
+input[type="text"] {
+    background-color: white;
+   height: 90%;
+    display: block;
+}
+
+.inp{
+width: 70%;
+    margin: 0; /* Quita cualquier margen extra */
+
+
+}
+.info_inp{
+    width: 30%;
+    margin: 0; /* Quita cualquier margen extra */
+    background-color: #e9ecef;
+}
+
+.cont_inp{
+    display: flex;
+    text-align: center;
+    border: 10px solid red;
+    padding: 5%;
+    width: 75%;
+
 }
