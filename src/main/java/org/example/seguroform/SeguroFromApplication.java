@@ -1,13 +1,13 @@
-package org.example.proyecto_progra_4;
+package org.example.seguroform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProyectoProgra4Application {
+public class SeguroFromApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProyectoProgra4Application.class, args);
+        SpringApplication.run(SeguroFromApplication.class, args);
     }
 
 }
