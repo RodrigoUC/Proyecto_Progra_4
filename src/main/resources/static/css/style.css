@@ -8,7 +8,10 @@ div{
     margin: 10px;
 }
 .cont_img{ /*Contiene imagen*/
-padding-left: 10%;
+    height: 10%;
+    width: 90%;
+    border: 10px solid orange;
+
 }
 .img_redonda{
     border-radius: 50%;
@@ -99,5 +102,7 @@ width: 70%;
     border: 10px solid red;
     padding: 5%;
     width: 75%;
-
+}
+.title{
+    text-align: center;
 }
