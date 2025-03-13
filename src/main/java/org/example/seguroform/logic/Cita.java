@@ -1,4 +1,4 @@
-package org.example.proyecto_progra_4.logic;
+package org.example.seguroform.logic;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

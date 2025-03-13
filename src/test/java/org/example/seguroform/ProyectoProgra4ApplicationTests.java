@@ -1,4 +1,4 @@
-package org.example.proyecto_progra_4;
+package org.example.seguroform;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
