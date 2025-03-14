@@ -115,6 +115,16 @@ width: 80%;
     background-color: #e9ecef
 }
 
+.contenedorLogin{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: 20%; /* Ajusta según necesites */
+    height: 100%; /* Ajusta según necesites */
+    background-color: #f0f2f5; /* Color de fondo */
+    border: 1px solid black; /* Borde para visualizar */
+}
+
 .cont_inp{
     display: flex;
     text-align: center;
