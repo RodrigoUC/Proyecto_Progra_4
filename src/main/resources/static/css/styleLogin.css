@@ -1,3 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%; /* Asegura que toda la página tenga altura */
+    margin: 0;
+}
 header{
     background-color: #e3f2fd;
     width: 100%;
@@ -8,9 +17,15 @@ div{
     margin: 10px;
 }
 .cont_img{ /*Contiene imagen*/
-    height: 10%;
+    display: flex;
+    height: 15%;
     width: 90%;
-    border: 10px solid orange;
+    justify-content: center;
+    align-items: center;
+}
+.cuerpo_login{
+    width: 80%;
+    height: 10%;
 
 }
 .img_redonda{
@@ -19,7 +34,6 @@ div{
 footer{
     background-color: #343a40;
     color:white;
-    position: absolute;
     bottom:0;
     width: 100%;
     height: 10%;
@@ -52,9 +66,14 @@ header>div{
     padding: 2%;
 }
 .login{
-    width: 35%;
-    height: 70%;
+    display: flex;
+    width: 25%;
     margin: auto;
+    height: 70%;
+    border: 1px solid blue;
+    /*justify-content: center; !* Centra verticalmente *!*/
+    align-items: center; /* Centra horizontalmente */
+
 }
 
 .confirmarCita{
@@ -76,22 +95,22 @@ input[type="submit"] {
     padding: 4% 30%;
     background-color: #17a2b8;
     font-size: 100%;
+    width: 100%;
     color:white;
 }
 input[type="text"] {
     background-color: white;
-   height: 90%;
+   height: 100%;
+    width: 100%;
     display: block;
 }
 
 .inp{
-width: 70%;
+width: 80%;
     margin: 0; /* Quita cualquier margen extra */
-
-
 }
 .info_inp{
-    width: 30%;
+    width: 20%;
     margin: 0; /* Quita cualquier margen extra */
     background-color: #e9ecef;
 }
@@ -100,9 +119,54 @@ width: 70%;
     display: flex;
     text-align: center;
     border: 10px solid red;
-    padding: 5%;
-    width: 75%;
+    /*padding: 5%;*/
+    width: 100%;
 }
-.title{
+.text_center{
     text-align: center;
 }
+.title_login{
+    display: flex;
+    height: 15%;
+    width: 100%;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center;
+    background-color: #f0f1f2;
+    margin-top: 0;
+}
+.img_login{
+    height: 70%;
+}
+
+.login>div{
+    margin-bottom: 5%;
+}
+
+.login_down{
+    display: flex;
+    width: 100%;
+    height: 20%;
+    margin-bottom: 0 !important;
+    background-color: #f0f1f2;
+    align-items: center; /* Centra horizontalmente */
+}
+
+.no_hay_cuenta{
+    display: flex;
+width: 50%;
+    align-items: center; /* Centra horizontalmente */
+font-size: 120%;
+justify-content: right;
+}
+
+.register{
+    display: flex;
+    width: 30%;
+    height: 50%;
+    border:2px solid red;
+    border-radius: 5%;
+    align-items: center;
+    justify-content: center;
+    color:red;
+}
+
