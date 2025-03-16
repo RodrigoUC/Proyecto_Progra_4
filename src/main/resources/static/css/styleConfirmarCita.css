@@ -158,3 +158,39 @@ img.circularImage {
 .marg_der{
     margin-right: 0;
 }
+
+
+.todo_espacio{
+    width: 100%;
+    height: 100%;
+}
+.logos{
+    align-items: center;
+    height: 100%;
+    width: 10%;
+    margin-left: 5%;
+}
+.cont_logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 33.33%;
+    margin:0;
+}
+.logo{
+    font-size: 250%
+}
+.cont_logo > a{
+    text-decoration: none;
+    color:inherit;
+}
+
+.footer_derecha{
+    height: 100%;
+    display: flex;
+    align-items: end;
+    margin-left: auto;      /* Empuja este div hacia la derecha */
+    margin-bottom: 2%;
+    /*background-color: lightgreen;*/
+}
