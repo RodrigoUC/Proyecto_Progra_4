@@ -30,7 +30,7 @@ create table if not exists Medicos (
 );
 
 create table if not exists Administradores (
-	id				int,
+	id				varchar(40),
 	departamento	varchar(50),
 	Primary	key (id)
 );
@@ -84,7 +84,7 @@ INSERT INTO Medicos (id, especialidad, localidad, costo_consulta, frecuencia_cit
 
 -- Inserts para Administradores
 INSERT INTO Administradores (id, departamento) VALUES
-(3, 'Recursos Humanos');
+('u003', 'Recursos Humanos');
 
 -- Inserts para Slot (Horarios de Medicos)
 INSERT INTO Slots (medico_id, dia, hora_inicio, hora_fin) VALUES
