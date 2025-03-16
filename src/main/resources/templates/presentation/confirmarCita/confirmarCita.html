@@ -31,28 +31,44 @@
 </header>
 
 
-<div class = "confirmarCita column">   <!-- muestra los datos del dr para confirmar o cancelar cita -->
+<div class = "confirmarCita column sombra lineHeightLow">   <!-- muestra los datos del dr para confirmar o cancelar cita -->
 
     <div class ="d_flex just_cont">
         <p><img src = "../../../../static/images/img_user.jpeg" class = "circularImage"></p>
     </div>
 
-    <div class ="d_flex just_cont">
+    <div class ="d_flex just_cont row lineHeightLow">
+        <div class = "d_flex just_cont alig_center marg_der">
+        <i class="fa-solid fa-user"></i>
+        </div>
+        <div class = "marg_izq">
         <p class = lineHeight>Nombre doctor</p>
+        </div>
     </div>
-    <div class ="d_flex just_cont">
-        <p class = lineHeight>Calendario</p>
+    <div class ="d_flex just_cont row lineHeightLow">
+        <div class = "d_flex just_cont alig_center marg_der">
+            <i class="fa-solid fa-calendar"></i>
+        </div>
+        <div class = "marg_izq">
+            <p class = lineHeight>Calendario</p>
+        </div>
     </div>
 
-    <div class ="d_flex just_cont" >
-        <p class = lineHeight>Localizacion</p>
+    <div class ="d_flex just_cont row lineHeightLow">
+        <div class = "d_flex just_cont alig_center marg_der">
+            <i class="fa-solid fa-map"></i>
+        </div>
+        <div class = "marg_izq">
+            <p class = lineHeight>Localizacion</p>
+        </div>
     </div>
+
     <div class ="row just_cont">
         <div>
             <button class="confirm-btn">Confirm</button>
         </div>
         <div>
-            <button class="confirm-btn">Confirm</button>
+            <button class="confirm-btn">Cancel</button>
         </div>
 
     </div>

@@ -7,6 +7,14 @@ div{
     border:1px solid black;
     margin: 10px;
 }
+
+.sombra{
+
+    border: 1px solid #ccc; /* Borde opcional */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+
+}
+
 .cont_img{ /*Contiene imagen*/
     padding-left: 10%;
 }
@@ -61,12 +69,12 @@ header>div{
     /*justify-content: center; !* Centra horizontalmente *!*/
     width: 40%;
     margin: auto;
-    top: 50px; /* Mueve el div N px hacia abajo */
+    top: 7px; /* Mueve el div N px hacia abajo */
 }
 
 .lineHeightLow{
-    line-height: 0.1;
-    padding: 0.1%;
+    line-height: 0.00001;
+    padding: 0.0005%;
 }
 
 
@@ -133,4 +141,20 @@ img.circularImage {
     margin-left: 18px;
     margin-right: 18px;
 
+}
+
+.contenedorIcono{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: 20%; /* Ajusta según necesites */
+    height: 100%; /* Ajusta según necesites */
+    background-color: #f0f2f5; /* Color de fondo */
+    border: 1px solid black; /* Borde para visualizar */
+}
+.marg_izq{
+   margin-left: 0;
+}
+.marg_der{
+    margin-right: 0;
 }
