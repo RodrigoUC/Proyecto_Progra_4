@@ -1,0 +1,142 @@
+html, body {
+    height: 100%; /* Asegura que toda la página tenga altura */
+    width: 100%;
+    margin: 0;
+}
+div{
+    border:1px solid black;
+}
+header{
+    display: flex;
+    background-color: #e3f2fd;
+    width: 100%;
+    height: 10%;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.cuerpo_header{
+    display: flex;
+    height: 100%;
+    width: 30%;
+    margin: 0 auto; /* Centra horizontalmente */
+    align-items: center;
+    justify-content: center;
+    padding-right:5%;
+}
+.cont_img_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 0;
+    height: 100%;
+    width: 10%;
+    padding: 0;
+}
+.img_header{
+    height: 100%;
+    width: 70%;
+}
+.cel_header{
+    margin-left: 0;
+    margin-right: 0;
+}
+.img_redonda{
+    border-radius: 50%;
+}
+.alig_center{
+    align-items: center;
+}
+.title_header{
+    padding: 0;
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 0;
+    color: #7acfd7;
+}
+.opc_header{
+    padding: 1%;
+}
+.text_footer{
+    padding-right: 5%;
+}
+.logos{
+    align-items: center;
+    height: 100%;
+    width: 10%;
+    margin-left: 5%;
+}
+.cont_logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 33.33%;
+    margin:0;
+}
+.logo{
+    font-size: 250%
+}
+.cont_logo > a{
+    text-decoration: none;
+    color:inherit;
+}
+.footer_derecha{
+    height: 100%;
+    display: flex;
+    align-items: end;
+    margin-left: auto;      /* Empuja este div hacia la derecha */
+    margin-bottom: 2%;
+    /*background-color: lightgreen;*/
+}
+footer{
+    background-color: #343a40;
+    color:white;
+    bottom:0;
+    width: 100%;
+    height: 10%;
+    align-items: center; /* Asegura que el texto esté centrado verticalmente */
+    position: fixed;
+    z-index: 1000; /* Se asegura de que esté por encima */
+}
+.cuerpo_buscar_cita{
+    display: flex;
+    align-items: center;
+    background-color: #ebeff2;
+    margin: auto;
+    height: 80%;
+    width: 80%;
+}
+
+.busqueda{
+    display: flex;
+    align-items: center;
+    height: 10%;
+    width: 99%;
+    background-color: white;
+}
+
+.esp_buscar{
+    display :flex;
+    align-items: center;
+    justify-content: left;
+    height: 80%;
+    width: 30%;
+margin-left: 2%;
+}
+
+.info_bus{
+    background-color: #e8ecef;
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+}

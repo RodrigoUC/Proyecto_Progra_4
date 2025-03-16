@@ -9,9 +9,10 @@ html, body {
     margin: 0;
 }
 header{
+    display: flex;
     background-color: #e3f2fd;
     width: 100%;
-    height: 15%;
+    height: 10%;
 }
 div{
     border:1px solid black;
@@ -27,19 +28,19 @@ div{
 .cuerpo_login{
     width: 80%;
     height: 10%;
-
 }
 .img_redonda{
     border-radius: 50%;
 }
 footer{
-
     background-color: #343a40;
     color:white;
     bottom:0;
     width: 100%;
     height: 10%;
     align-items: center; /* Asegura que el texto esté centrado verticalmente */
+    position: fixed;
+    z-index: 1000; /* Se asegura de que esté por encima */
 }
 .row{
 display: flex;
@@ -53,6 +54,13 @@ display: flex;
     padding-right: 5%;
 }
 .title_header{
+    padding: 0;
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 0;
     color: #7acfd7;
 }
 .opc_header{
@@ -72,9 +80,11 @@ header>div{
     width: 25%;
     margin: auto;
     height: 70%;
-    border: 1px solid blue;
+    border: 2px solid #f0f1f2 ;
+    border-radius: 1%;
     /*justify-content: center; !* Centra verticalmente *!*/
     align-items: center; /* Centra horizontalmente */
+    margin-bottom: 7%;
 }
 
 .confirmarCita{
@@ -98,12 +108,15 @@ input[type="submit"] {
     font-size: 100%;
     width: 100%;
     color:white;
+    border:none;
+    border-radius: 1%;
 }
 input[type="text"] {
     background-color: white;
    height: 100%;
     width: 100%;
     display: block;
+    border: 2px solid #f0f1f2 ;
 }
 
 .inp{
@@ -123,16 +136,10 @@ width: 80%;
     width: 20%; /* Ajusta según necesites */
     height: 100%; /* Ajusta según necesites */
     background-color: #f0f2f5; /* Color de fondo */
-    border: 1px solid black; /* Borde para visualizar */
+    border: 2px solid #f0f1f2 ;
+    /*border: 1px solid black; !* Borde para visualizar *!*/
 }
 
-.cont_inp{
-    display: flex;
-    text-align: center;
-    border: 10px solid red;
-    /*padding: 5%;*/
-    width: 100%;
-}
 .text_center{
     text-align: center;
 }
@@ -184,7 +191,10 @@ justify-content: right;
     border:2px solid red;
     border-radius: 5%;
     color:red;
-
+}
+.button_register:hover{
+    background-color: red;
+    color :black;
 }
 .todo_espacio{
     width: 100%;
@@ -219,4 +229,32 @@ font-size: 250%
     margin-left: auto;      /* Empuja este div hacia la derecha */
     margin-bottom: 2%;
     /*background-color: lightgreen;*/
+}
+
+.cont_img_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 0;
+    height: 100%;
+    width: 10%;
+    padding: 0;
+}
+.img_header{
+    height: 100%;
+    width: 70%;
+}
+.cuerpo_header{
+    display: flex;
+    height: 100%;
+    width: 30%;
+    margin: 0 auto; /* Centra horizontalmente */
+    align-items: center;
+    justify-content: center;
+    padding-right:5%;
+}
+.cel_header{
+    margin-left: 0;
+    margin-right: 0;
 }
