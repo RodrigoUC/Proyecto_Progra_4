@@ -1,6 +1,9 @@
 package org.example.seguroform.logic;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -9,11 +12,6 @@ public class Administrador {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false)
-    private Usuario usuarios;
 
     @Size(max = 50)
     @Column(name = "departamento", length = 50)
@@ -25,14 +23,6 @@ public class Administrador {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Usuario getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(Usuario usuarios) {
-        this.usuarios = usuarios;
     }
 
     public String getDepartamento() {
