@@ -1,11 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%; /* Asegura que toda la página tenga altura */
+    width: 100%;
+    margin: 0;
+}
+
 header{
     background-color: #e3f2fd;
     width: 100%;
-    height: 10vh;
+    height: 15%;
 }
 div{
     border:1px solid black;
     margin: 10px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+.div2 {
+    width: 50%; /* Ocupa el 50% del ancho de la pantalla */
+    max-width: 400px; /* No crece más de 400px */
+    height: auto; /* Se ajusta según el contenido */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+header>div{
+    padding: 2%;
+}
+.title_header{
+    color: #7acfd7;
+}
+.opc_header{
+    padding: 1%;
 }
 
 .sombra{
@@ -18,6 +50,7 @@ div{
 .cont_img{ /*Contiene imagen*/
     padding-left: 10%;
 }
+
 .img_redonda{
     border-radius: 50%;
 }
@@ -62,19 +95,20 @@ header>div{
     margin: auto;
 }
 
-.confirmarCita{
+.confirmarCita {
     position: relative;
     display: flex;
-    /*align-items: center; !* Asegura que el texto esté centrado verticalmente *!*/
-    /*justify-content: center; !* Centra horizontalmente *!*/
-    width: 40%;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 70%;
     margin: auto;
-    top: 7px; /* Mueve el div N px hacia abajo */
+    margin-top: 1%; /* Ajusta este valor según necesites */
 }
 
 .lineHeightLow{
-    line-height: 0.00001;
-    padding: 0.0005%;
+    line-height: 100%;
+    padding: 1%;
 }
 
 
