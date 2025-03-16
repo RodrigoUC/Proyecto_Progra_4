@@ -5,18 +5,19 @@
 }
 html, body {
     height: 100%; /* Asegura que toda la página tenga altura */
+    width: 100%;
     margin: 0;
 }
 header{
     background-color: #e3f2fd;
     width: 100%;
-    height: 10vh;
+    height: 15%;
 }
 div{
     border:1px solid black;
     margin: 10px;
 }
-.cont_img{ /*Contiene imagen*/
+.cont_img_login{ /*Contiene imagen*/
     display: flex;
     height: 15%;
     width: 90%;
@@ -32,6 +33,7 @@ div{
     border-radius: 50%;
 }
 footer{
+
     background-color: #343a40;
     color:white;
     bottom:0;
@@ -73,7 +75,6 @@ header>div{
     border: 1px solid blue;
     /*justify-content: center; !* Centra verticalmente *!*/
     align-items: center; /* Centra horizontalmente */
-
 }
 
 .confirmarCita{
@@ -173,10 +174,49 @@ justify-content: right;
     display: flex;
     width: 30%;
     height: 50%;
-    border:2px solid red;
-    border-radius: 5%;
     align-items: center;
     justify-content: center;
-    color:red;
 }
 
+.button_register{
+ width: 100%;
+    height: 100%;
+    border:2px solid red;
+    border-radius: 5%;
+    color:red;
+
+}
+.todo_espacio{
+    width: 100%;
+    height: 100%;
+}
+.logos{
+    align-items: center;
+    height: 100%;
+    width: 10%;
+    margin-left: 5%;
+}
+.cont_logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+height: 100%;
+    width: 33.33%;
+    margin:0;
+}
+.logo{
+font-size: 250%
+}
+.cont_logo > a{
+    text-decoration: none;
+    color:inherit;
+}
+
+.footer_derecha{
+    height: 100%;
+    display: flex;
+    align-items: end;
+    margin-left: auto;      /* Empuja este div hacia la derecha */
+    margin-bottom: 2%;
+    /*background-color: lightgreen;*/
+}
