@@ -2,14 +2,14 @@ package org.example.seguroform.logic;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "horarios")
-public class Horario {
+@Table(name = "slots")
+public class Slot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -17,12 +17,13 @@ public class Horario {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "medico_id", nullable = false)
     private Medico medico;
 
     @NotNull
-    @Column(name = "fecha", nullable = false)
-    private LocalDate fecha;
+    @Column(name = "dia", nullable = false)
+    private Integer dia;
 
     @NotNull
     @Column(name = "hora_inicio", nullable = false)
@@ -31,10 +32,6 @@ public class Horario {
     @NotNull
     @Column(name = "hora_fin", nullable = false)
     private LocalTime horaFin;
-
-    @ColumnDefault("1")
-    @Column(name = "disponible")
-    private Boolean disponible;
 
     public Integer getId() {
         return id;
@@ -52,12 +49,12 @@ public class Horario {
         this.medico = medico;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public Integer getDia() {
+        return dia;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setDia(Integer dia) {
+        this.dia = dia;
     }
 
     public LocalTime getHoraInicio() {
@@ -74,14 +71,6 @@ public class Horario {
 
     public void setHoraFin(LocalTime horaFin) {
         this.horaFin = horaFin;
-    }
-
-    public Boolean getDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(Boolean disponible) {
-        this.disponible = disponible;
     }
 
 }

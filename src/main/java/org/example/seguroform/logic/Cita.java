@@ -3,6 +3,8 @@ package org.example.seguroform.logic;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
 
@@ -16,23 +18,30 @@ public class Cita {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "medico_id", nullable = false)
     private Medico medico;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "horario_id", nullable = false)
-    private Horario horario;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "slot_id", nullable = false)
+    private Slot slot;
 
     @ColumnDefault("'pendiente'")
     @Lob
     @Column(name = "estado")
     private String estado;
+
+    @Lob
+    @Column(name = "notas")
+    private String notas;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "fecha_creacion")
@@ -62,12 +71,12 @@ public class Cita {
         this.medico = medico;
     }
 
-    public Horario getHorario() {
-        return horario;
+    public Slot getSlot() {
+        return slot;
     }
 
-    public void setHorario(Horario horario) {
-        this.horario = horario;
+    public void setSlot(Slot slot) {
+        this.slot = slot;
     }
 
     public String getEstado() {
@@ -76,6 +85,14 @@ public class Cita {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getNotas() {
+        return notas;
+    }
+
+    public void setNotas(String notas) {
+        this.notas = notas;
     }
 
     public Instant getFechaCreacion() {

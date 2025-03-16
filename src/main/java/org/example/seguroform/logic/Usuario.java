@@ -11,18 +11,18 @@ import java.time.Instant;
 @Table(name = "usuarios")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Size(max = 40)
+    @Column(name = "id", nullable = false, length = 40)
+    private String id;
 
     @Size(max = 50)
     @NotNull
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    @Size(max = 50)
+    @Size(max = 250)
     @NotNull
-    @Column(name = "clave", nullable = false, length = 50)
+    @Column(name = "clave", nullable = false, length = 250)
     private String clave;
 
     @NotNull
@@ -34,11 +34,11 @@ public class Usuario {
     @Column(name = "fecha_registro")
     private Instant fechaRegistro;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

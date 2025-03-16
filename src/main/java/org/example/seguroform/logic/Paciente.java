@@ -2,16 +2,20 @@ package org.example.seguroform.logic;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "pacientes")
 public class Paciente {
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Size(max = 40)
+    @Column(name = "id", nullable = false, length = 40)
+    private String id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id", nullable = false)
     private Usuario usuarios;
 
@@ -23,11 +27,11 @@ public class Paciente {
     @Column(name = "direccion", length = 100)
     private String direccion;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
