@@ -36,6 +36,18 @@ public class Service {
         return usuarioRepository.findById(id);
     }
 
+    public Usuario validarUsuario(String id, String password) {
+        // Buscar el usuario por su id
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+
+        // Verificar si el usuario existe y si la contraseña coincide
+        if (usuario != null && usuario.getClave().equals(password)) {
+            return usuario;
+        } else {
+            return null; // Retornar null si el usuario no es válido
+        }
+    }
+
     //Pacientes
     public Iterable<Paciente> pacienteFindAll(){
         return pacienteRepository.findAll();
@@ -52,7 +64,12 @@ public class Service {
 
     // Medicos
     public Iterable<Medico> medicoFindAll(){
-        return medicoRepository.findAll();
+        Iterable<Medico> med = medicoRepository.findAll();
+        for (Medico medico : med) {
+            System.out.println(medico.getEspecialidad());
+        }
+        System.out.println("Hola mundo");
+        return med;
     }
 
     public void medicoAdd(Medico m){

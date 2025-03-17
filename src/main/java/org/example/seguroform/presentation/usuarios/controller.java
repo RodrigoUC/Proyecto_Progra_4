@@ -1,20 +1,21 @@
 package org.example.seguroform.presentation.usuarios;
 
 import org.example.seguroform.logic.Service;
-import org.example.seguroform.logic.Slot;
 import org.example.seguroform.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @org.springframework.stereotype.Controller("usuarios")
 @RequestMapping("/presentation/usuarios")
 public class controller {
     @Autowired
     private Service service;
+
+    @GetMapping("/search")
+    public String search(Model model) {
+        return "/presentation/buscarCita/ViewbuscarCita";
+    }
 
     @GetMapping("/newlogin")
     public String newLogin(Model model) {
@@ -31,4 +32,5 @@ public class controller {
         service.usuarioDel(id);
         return "redirect:/presentation/login/ViewLogin";
     }
+
 }

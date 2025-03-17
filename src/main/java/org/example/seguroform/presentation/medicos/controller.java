@@ -25,4 +25,10 @@ public class controller {
         service.medicoDel(id);
         return "redirect:/presentation/login/ViewLogin";
     }
+
+    @GetMapping("/show")
+    public String show(Model model) {
+        model.addAttribute("medicos", service.medicoFindAll());
+        return "/presentation/buscarCita/ViewbuscarCita";
+    }
 }

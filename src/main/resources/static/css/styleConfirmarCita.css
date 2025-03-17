@@ -118,7 +118,7 @@ input[type="submit"] {
     font-size: 100%;
     color:white;
 }
-input[type="text"] {
+input[type="text"]{
     background-color: white;
     height: 90%;
     display: block;
