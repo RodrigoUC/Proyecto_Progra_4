@@ -64,12 +64,7 @@ public class Service {
 
     // Medicos
     public Iterable<Medico> medicoFindAll(){
-        Iterable<Medico> med = medicoRepository.findAll();
-        for (Medico medico : med) {
-            System.out.println(medico.getEspecialidad());
-        }
-        System.out.println("Hola mundo");
-        return med;
+        return medicoRepository.findAll();
     }
 
     public void medicoAdd(Medico m){
@@ -80,7 +75,7 @@ public class Service {
         medicoRepository.deleteById(id);
     }
 
-    public Optional<Medico> medigoGet(String id){
+    public Optional<Medico> medicoGet(String id){
         return medicoRepository.findById(id);
     }
 

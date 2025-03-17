@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/presentation/fragments :: head}">
 <body>
 <header th:replace="~{/presentation/fragments :: header}"></header>
@@ -15,7 +15,7 @@
         <i class="fa-solid fa-user"></i>
         </div>
         <div class = "marg_izq">
-        <p class = "lineHeight">Nombre doctor</p>
+        <p class = "lineHeight medico" th:text="${medico.usuarios.nombre}"></p>
         </div>
     </div>
     <div class ="d_flex just_cont row lineHeightLow">
@@ -32,7 +32,7 @@
             <i class="fa-solid fa-map"></i>
         </div>
         <div class = "marg_izq">
-            <p class = "lineHeight">Localizacion</p>
+            <p class = "lineHeight" th:text="${medico.localidad}">Localizacion</p>
         </div>
     </div>
 

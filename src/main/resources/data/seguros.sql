@@ -26,6 +26,8 @@ create table if not exists Medicos (
 	localidad		varchar(100) not null,
 	costo_consulta	float not null,
 	frecuencia_citas int not null,
+	foto			varchar(255) not null,
+	presentacion	text,
 	Primary key (id)
 );
 
@@ -78,9 +80,9 @@ INSERT INTO Pacientes (id, telefono, direccion) VALUES
 ('u004', '8888-2222', 'Calle 2, Heredia');
 
 -- Inserts para Medicos
-INSERT INTO Medicos (id, especialidad, localidad, costo_consulta, frecuencia_citas) VALUES
-('u002', 'Cardiologia', 'San Jose', 50000, 60),
-('u005', 'Dermatologia', 'Alajuela', 45000, 30);
+INSERT INTO Medicos (id, especialidad, localidad, costo_consulta, frecuencia_citas, foto, presentacion) VALUES
+('u002', 'Cardiologia', 'San Jose', 50000, 60,'img.png', 'Es importante mantener un buen ritmo cardiaco.'),
+('u005', 'Dermatologia', 'Alajuela', 45000, 30, 'img.png', 'Siempre en busca del cuidado de la piel para mis pacientes.');
 
 -- Inserts para Administradores
 INSERT INTO Administradores (id, departamento) VALUES

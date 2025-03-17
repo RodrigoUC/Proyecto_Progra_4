@@ -31,4 +31,10 @@ public class controller {
         model.addAttribute("medicos", service.medicoFindAll());
         return "/presentation/buscarCita/ViewbuscarCita";
     }
+
+    @GetMapping("/confirm/{id}")
+    public String confirm(@PathVariable("id") String id, Model model) {
+        model.addAttribute("medico", service.medicoGet(id));
+        return "/presentation/confirmarCita/ViewconfirmarCita";
+    }
 }
