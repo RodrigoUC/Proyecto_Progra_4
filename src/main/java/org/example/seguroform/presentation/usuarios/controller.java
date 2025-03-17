@@ -12,11 +12,6 @@ public class controller {
     @Autowired
     private Service service;
 
-    @GetMapping("/search")
-    public String search(Model model) {
-        return "/presentation/buscarCita/ViewbuscarCita";
-    }
-
     @GetMapping("/newlogin")
     public String newLogin(Model model) {
         //model.addAttribute("usuario", new Usuario());
