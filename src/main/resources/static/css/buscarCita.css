@@ -4,7 +4,7 @@ html, body {
     margin: 0;
 }
 div{
-    border:1px solid black;
+    /*border:1px solid black;*/
 }
 header{
     display: flex;
@@ -119,8 +119,9 @@ footer{
 
 .busqueda{
     display: flex;
+    margin-top: 1%;
     align-items: center;
-    height: 10%;
+    height: 15%;
     width: 99%;
     background-color: white;
 }
@@ -130,7 +131,7 @@ footer{
     align-items: center;
     justify-content: left;
     height: 80%;
-    width: 30%;
+    width: 25%;
 margin-left: 2%;
 }
 
@@ -138,5 +139,36 @@ margin-left: 2%;
     background-color: #e8ecef;
     display: flex;
     justify-content: center;
-    padding: 1%;
+    align-items: center;
+    width: 30%;
+    height: 60%;
+
 }
+input[type="text"] {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    display: block;
+    /*border: 2px solid #f0f1f2 ;*/
+    box-sizing: border-box;
+    border-bottom-right-radius: 50% 250%;
+    border-top-right-radius: 50% 250%;
+}
+.input_buscar{
+    height: 60%;
+    width: 70%;
+}
+
+.button_search{
+    background-color: #047dfd;
+    color: white;
+    padding: 30%;
+    padding-right: 40%;
+    padding-left: 40%;
+    border-bottom-right-radius: 150% 250%;
+    border-top-right-radius: 150% 250%;
+    border-bottom-left-radius: 150% 250%;
+    border-top-left-radius: 150% 250%;
+    font-size: 110%;
+}
+
