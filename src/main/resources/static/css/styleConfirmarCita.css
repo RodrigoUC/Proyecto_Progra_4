@@ -17,9 +17,6 @@ header{
 div{
     border:1px solid black;
     margin: 10px;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
 }
 
 .div2 {
@@ -130,8 +127,6 @@ input[type="text"] {
 .inp{
     width: 70%;
     margin: 0; /* Quita cualquier margen extra */
-
-
 }
 .info_inp{
     width: 30%;
@@ -227,4 +222,156 @@ img.circularImage {
     margin-left: auto;      /* Empuja este div hacia la derecha */
     margin-bottom: 2%;
     /*background-color: lightgreen;*/
+}
+
+
+/*===================MEDICO GESTION CITAS===================*/
+
+.medicoGestionCitas{
+    position: relative;
+    display: flex;
+    width: 85%;
+    height: 70%;
+    margin: auto;
+    margin-top: 1%; /* Ajusta este valor según necesites */
+}
+
+.tituloDoctorAppointments{
+    font-size: 300%; /* Aumenta el tamaño del texto en un 50% */
+}
+
+.nombreDoctorTitulo{
+    color:blue;
+    font-style: italic;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.orange{
+    color: orange;
+}
+
+
+.status {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.pending {
+    background-color: yellow;
+    color: black;
+}
+.attended {
+    background-color: green;
+    color: white;
+}
+.buttons {
+    display: inline-block;
+    margin-left: 10px;
+}
+.view {
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Ocultar checkbox */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Cambiar estado cuando el checkbox está marcado */
+input[type="checkbox"]:checked ~ .status {
+    background-color: green;
+    color: white;
+}
+
+input[type="checkbox"]:checked ~ .status::after {
+    content: "Attended";
+}
+
+input[type="checkbox"]:not(:checked) ~ .status::after {
+    content: "Pending";
+}
+
+/* Ocultar/mostrar botones según el estado */
+input[type="checkbox"]:checked ~ .buttons {
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .view {
+    display: inline-block;
+}
+
+select, input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.view {
+    display: none;
+}
+
+
+.contenedorStatusPatient{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: 100%; /* Ajusta según necesites */
+    height: 80%; /* Ajusta según necesites */
+    background-color: #ececec; /* Color de fondo */
+    border: 2px solid #b3b3b3 ;
+    /*border: 1px solid black; !* Borde para visualizar *!*/
+    border-radius: 2px;
+    margin-bottom: 15%; /* Ajusta este valor según necesites */
+    padding: 0px 10px;
+    border-top-left-radius: 10px; /* Redondea la esquina superior derecha */
+    border-bottom-left-radius: 10px; /* Redondea la esquina inferior derecha */
+
+}
+.contenedorStatusPatient2{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: 100%; /* Ajusta según necesites */
+    height: 80%; /* Ajusta según necesites */
+    background-color: white; /* Color de fondo */
+    border: 2px solid #b3b3b3 ;
+    /*border: 1px solid black; !* Borde para visualizar *!*/
+    border-top-right-radius: 20px; /* Redondea la esquina superior derecha */
+    border-bottom-right-radius: 20px; /* Redondea la esquina inferior derecha */
+    margin-bottom: 15%; /* Ajusta este valor según necesites */
+    padding: 0px 10px;
+    margin-right: 10px;
+
+
+}
+
+label {
+    /*display: block;*/
+}
+
+.button_search{
+    color: white;
+    background-color: #1543b8;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    display: flex;
+    position: relative;
+    margin: auto;
+    margin-top: 25%;
+}
+
+.spaceEvenly{
+    justify-content: space-evenly; /* Distribuye los divs a lo largo del contenedor */
+    width: 70%;
 }
