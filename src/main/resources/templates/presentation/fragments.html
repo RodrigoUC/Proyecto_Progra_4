@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/css/buscarCita.css">
+    <link rel="stylesheet" href="/css/styleConfirmarCita.css">
+    <link rel="stylesheet" href="/css/styleLogin.css">
+</head>
+
 <head th:fragment="head">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <title>Medical Appointments</title>
+    <link rel="stylesheet" href="/css/buscarCita.css">
+    <link rel="stylesheet" href="/css/styleConfirmarCita.css">
+    <link rel="stylesheet" href="/css/styleLogin.css">
 </head>
 
 <header th:fragment="header" class="row alig_center">
-    <div class = "cont_img">   <!--Contenedor de la foto-->
-        <p>imagen</p>
+    <div class = "cont_img_header">   <!--Contenedor de la foto-->
+        <img class = "img_header img_redonda" src="/images/img_header.jpeg">
     </div>
     <div class = "title_header">
-        <h4>Doctor Appointments</h4>
+        <h2>Medical Appointments</h2>
     </div>
-    <div class = "row" >   <!-- Numero de telefono con la imagen-->
-        <div>
-            <p>Cel</p>
+    <div class = "row cuerpo_header" >   <!-- Numero de telefono con la imagen-->
+        <div class = "cel_header">
+            <i class="fa-solid fa-phone"></i>
         </div>
-        <div>
-            <p>+506 5467 0937</p>
+        <div class = "cel_header">
+            <h3>+506 5467 0937</h3>
         </div>
     </div>
 
-    <div class = "row">   <!--Opciones a la derecha-->
+    <div class = "row cuerpo_header">   <!--Opciones a la derecha-->
         <div class = "opc_header alig_center"><a href="https://www.google.com">About...</a></div>
         <div class = "opc_header alig_center"><a href="https://www.google.com">Search</a></div>
         <div class = "opc_header alig_center"><a href="https://www.google.com">Login</a></div>
