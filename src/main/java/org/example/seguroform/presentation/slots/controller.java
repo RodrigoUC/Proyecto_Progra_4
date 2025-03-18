@@ -1,10 +1,8 @@
 package org.example.seguroform.presentation.slots;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Slot;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;

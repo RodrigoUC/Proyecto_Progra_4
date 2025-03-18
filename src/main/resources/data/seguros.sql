@@ -81,8 +81,8 @@ INSERT INTO Pacientes (id, telefono, direccion) VALUES
 
 -- Inserts para Medicos
 INSERT INTO Medicos (id, especialidad, localidad, costo_consulta, frecuencia_citas, foto, presentacion) VALUES
-('u002', 'Cardiologia', 'San Jose', 50000, 60,'img.png', 'Es importante mantener un buen ritmo cardiaco.'),
-('u005', 'Dermatologia', 'Alajuela', 45000, 30, 'img.png', 'Siempre en busca del cuidado de la piel para mis pacientes.');
+('u002', 'Cardiologia', 'San Jose', 50000, 60,'/images/medica.png', 'Es importante mantener un buen ritmo cardiaco.'),
+('u005', 'Dermatologia', 'Alajuela', 45000, 30, '/images/medico.png', 'Siempre en busca del cuidado de la piel para mis pacientes.');
 
 -- Inserts para Administradores
 INSERT INTO Administradores (id, departamento) VALUES

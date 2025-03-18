@@ -17,6 +17,11 @@ public class controller {
         return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
     }
 
+    @GetMapping("/confirmarCita")
+    public String confirmarCita(Model model) {
+        return "/presentation/confirmarCita/ViewconfirmarCita";
+    }
+
     @GetMapping("/create")
     public String createCita(@ModelAttribute Cita cita) {
         service.citaAdd(cita);

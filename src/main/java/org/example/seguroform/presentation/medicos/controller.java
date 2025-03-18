@@ -1,7 +1,7 @@
 package org.example.seguroform.presentation.medicos;
 
-import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Medico;
+import org.example.seguroform.logic.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

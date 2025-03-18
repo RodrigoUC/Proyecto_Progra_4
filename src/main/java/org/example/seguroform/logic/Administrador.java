@@ -1,28 +1,42 @@
 package org.example.seguroform.logic;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "administradores")
 public class Administrador {
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Size(max = 40)
+    @Column(name = "id", nullable = false, length = 40)
+    private String id;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "id", nullable = false)
+    private Usuario usuarios;
 
     @Size(max = 50)
     @Column(name = "departamento", length = 50)
     private String departamento;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public Usuario getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Usuario usuarios) {
+        this.usuarios = usuarios;
     }
 
     public String getDepartamento() {

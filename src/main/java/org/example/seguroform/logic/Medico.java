@@ -38,6 +38,15 @@ public class Medico {
     @Column(name = "frecuencia_citas", nullable = false)
     private Integer frecuenciaCitas;
 
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "foto", nullable = false)
+    private String foto;
+
+    @Lob
+    @Column(name = "presentacion")
+    private String presentacion;
+
     public String getId() {
         return id;
     }
@@ -84,6 +93,22 @@ public class Medico {
 
     public void setFrecuenciaCitas(Integer frecuenciaCitas) {
         this.frecuenciaCitas = frecuenciaCitas;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
     }
 
 }
