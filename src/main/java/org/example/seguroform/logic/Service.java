@@ -32,8 +32,8 @@ public class Service {
         usuarioRepository.deleteById(id);
     }
 
-    public Optional<Usuario> usuarioFindById(String id) {
-        return usuarioRepository.findById(id);
+    public Usuario usuarioFindById(String id) {
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     public Usuario validarUsuario(String id, String password) {
@@ -75,8 +75,8 @@ public class Service {
         medicoRepository.deleteById(id);
     }
 
-    public Optional<Medico> medicoGet(String id){
-        return medicoRepository.findById(id);
+    public Medico medicoGet(String id){
+        return medicoRepository.findById(id).orElse(null);
     }
 
     //Administradores
@@ -103,8 +103,8 @@ public class Service {
     public void slotDel(Integer id) {
         slotRepository.deleteById(id);
     }
-    public Optional<Slot> slotFindById(Integer id) {
-        return slotRepository.findById(id);
+    public Slot slotFindById(Integer id) {
+        return slotRepository.findById(id).orElse(null);
     }
 
     //Citas
@@ -117,8 +117,8 @@ public class Service {
     public void citaDel(Integer id) {
         citaRepository.deleteById(id);
     }
-    public Optional<Cita> citaFindById(Integer id) {
-        return citaRepository.findById(id);
+    public Cita citaFindById(Integer id) {
+        return citaRepository.findById(id).orElse(null);
     }
 
 }
