@@ -16,6 +16,36 @@
     <link rel="stylesheet" href="/css/styleLogin.css">
 </head>
 
+<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!--    <ul>-->
+<!--        <li>-->
+<!--            <a th:href="@{presentation/medicos/show}">Search</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{presentation/usuarios/login}">Login</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{presentation/medicos/confirm/u002}">ConfirmarCita</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{presentation/citas/showCitas}">GesitonCitas</a>-->
+<!--        </li>-->
+<!--        <th:block sec:authorize="isAnonymous()">-->
+<!--            <li>-->
+<!--                <a href="/presentation/usuarios/login">Login</a>-->
+<!--            </li>-->
+<!--        </th:block>-->
+<!--        <th:block sec:authorize="isAuthenticated()">-->
+<!--            <ul>-->
+<!--                <li>-->
+<!--                    <span>&#45;&#45;Username&#45;&#45;</span>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </th:block>-->
+
+<!--    </ul>-->
+</nav>
+
 <header th:fragment="header" class="row alig_center">
     <div class = "cont_img_header">   <!--Contenedor de la foto-->
         <img class = "img_header img_redonda" src="/images/img_header.jpeg">
@@ -32,33 +62,18 @@
         </div>
     </div>
 
+<!--    <nav th:replace="~{/presentation/fragments :: nav}"></nav>-->
+
     <div class = "row cuerpo_header">   <!--Opciones a la derecha-->
         <div class = "opc_header alig_center"><a href="https://www.google.com">About...</a></div>
         <div class = "opc_header alig_center"><a th:href="@{/presentation/medicos/show}">Search</a></div>
         <div class = "opc_header alig_center"><a th:href="@{/presentation/usuarios/login}">Login</a></div>
+        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/showCitas}">Citas</a></div>
+        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/confirmarCita}">Confirmar</a></div>
     </div>
 </header>
 
-<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <ul class="Menu">
-        <li>
-            <a href="presentation/medicos/show">Search</a>
-        </li>
-        <th:block sec:authorize="isAnonymous()">
-            <li>
-                <a href="/presentation/usuarios/login">Login</a>
-            </li>
-        </th:block>
-        <th:block sec:authorize="isAuthenticated()">
-            <ul>
-                <li>
-                    <span>--Username--</span>
-                </li>
-            </ul>
-        </th:block>
 
-    </ul>
-</nav>
 
 <footer th:fragment="footer" class="row alig_center">
     <div class = "row text_footer">
