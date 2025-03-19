@@ -15,7 +15,7 @@ header{
     height: 10%;
 }
 div{
-    border:1px solid black;
+    /*border:1px solid black;*/
     margin: 10px;
 }
 .cont_img_login{ /*Contiene imagen*/
@@ -111,6 +111,7 @@ input[type="submit"] {
     border:none;
     border-radius: 1%;
 }
+
 input[type="text"]{
     background-color: white;
    height: 100%;
@@ -118,11 +119,23 @@ input[type="text"]{
     display: block;
     border: 2px solid #f0f1f2 ;
 }
+input[type="file"]{
+    background-color: white;
+   height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 2px solid #f0f1f2 ;
+}
 
 .inp{
 width: 80%;
     margin: 0; /* Quita cualquier margen extra */
 }
+select{
+    width: 100%;
+}
+
 .info_inp{
     width: 20%;
     margin: 0; /* Quita cualquier margen extra */
@@ -257,4 +270,7 @@ font-size: 250%
 .cel_header{
     margin-left: 0;
     margin-right: 0;
+}
+.back_red{
+    background-color: red !important;
 }

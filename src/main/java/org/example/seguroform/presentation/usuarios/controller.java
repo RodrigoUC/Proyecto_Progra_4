@@ -18,6 +18,11 @@ public class controller {
         return "/presentation/login/ViewLogin";
     }
 
+@GetMapping("/register")
+    public String register(Model model) {
+        return "/presentation/registro/ViewRegistro";
+    }
+
     @GetMapping("/notAuthorized")
     public String notAuthorized(){
         return "/presentation/login/ViewLogin";
