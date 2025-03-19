@@ -277,29 +277,48 @@ img.circularImage {
     color: blue;
     font-weight: bold;
     cursor: pointer;
+    display: none; /* Inicialmente oculto */
 }
 
-.attend { background-color: green; color: white; }
-.cancel { background-color: red; color: white; }
+.attend {
+    background-color: white; color: green;
+}
+.cancel {
+    background-color: white; color: red;
+}
 
-/* Cuando Attend está seleccionado */
-#attend:checked ~ .status {
+/* Cuando Attend está seleccionado, cambia el estado y se muestra el View */
+.attend-radio:checked ~ .status {
     background-color: green;
     color: white;
     content: "Attended";
 }
-#attend:checked ~ .status::before {
+
+.attend-radio:checked ~ .status::before {
     content: "Attended";
 }
 
-/* Ocultar botones cuando Attend es seleccionado */
-#attend:checked ~ .actions {
+/* Ocultar botones de acción cuando Attend está seleccionado */
+.attend-radio:checked ~ .actions {
     display: none;
 }
 
-/* Mostrar el botón View cuando Attend es seleccionado */
-#attend:checked ~ .view {
+/* Mostrar el botón View cuando Attend está seleccionado */
+.attend-radio:checked ~ .view {
     display: inline-block;
+}
+
+/* Ocultar los radio buttons visualmente */
+input[type="radio"] {
+    display: none;
+}
+
+/* Estilizar los botones de Attend y Cancel como botones */
+.actions label {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 select, input[type="text"] {
@@ -308,9 +327,6 @@ select, input[type="text"] {
     border-radius: 4px;
 }
 
-.view {
-    display: none;
-}
 
 
 .contenedorStatusPatient{

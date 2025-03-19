@@ -41,14 +41,14 @@
     </form>
 
     <!-- aqui vienen las citas que tiene el doctor, hago una para ejemplo -->
-    <div class = "row spaceEvenly" th:each="c: ${citas}">
+    <div class="row spaceEvenly" th:each="c: ${citas}">
 
-        <div class = "d_flex just_cont alig_center marg_der"> <!-- Foto -->
+        <div class="d_flex just_cont alig_center marg_der"> <!-- Foto -->
             <i class="fa-solid fa-user"></i>
             <p th:text="${c.getPaciente().getUsuarios().getNombre()}"> </p>
         </div>
 
-        <div class = "d_flex just_cont alig_center marg_der"><!-- Fecha -->
+        <div class="d_flex just_cont alig_center marg_der"><!-- Fecha -->
             <p th:text="${c.getFechaCreacion()}"> </p>
         </div>
 
@@ -56,17 +56,17 @@
             <p th:text="${c.getEstado()}"> </p>
         </div>
 
-        <div class = "row"><!-- attend / cancel // view -->
+        <div class="row"><!-- attend / cancel // view -->
             <!-- Estado inicial -->
             <span class="status">Pending</span>
 
-            <!-- Opciones Attend y Cancel -->
-            <input type="radio" id="attend" name="action">
-            <input type="radio" id="cancel" name="action">
+            <!-- Opciones Attend y Cancel con names únicos para cada cita -->
+            <input type="radio" id="attend-${c.id}" name="action-attend-${c.id}" class="attend-radio">
+            <input type="radio" id="cancel-${c.id}" name="action-cancel-${c.id}" class="cancel-radio">
 
             <div class="actions">
-                <label for="attend" class="btn attend">✔ Attend</label>
-                <label for="cancel" class="btn cancel">✖ Cancel</label>
+                <label for="attend-${c.id}" class="btn attend">✔ Attend</label>
+                <label for="cancel-${c.id}" class="btn cancel">✖ Cancel</label>
             </div>
 
             <!-- Botón View que solo aparece cuando se presiona Attend -->
@@ -75,6 +75,8 @@
         </div>
 
     </div>
+
+
 
 
 </div>
