@@ -12,20 +12,34 @@ public class controller {
     @Autowired
     private Service service;
 
-    @GetMapping("/newlogin")
+    @GetMapping("/login")
     public String newLogin(Model model) {
-        //model.addAttribute("usuario", new Usuario());
         return "/presentation/login/ViewLogin";
     }
+
+    @GetMapping("/notAuthorized")
+    public String notAuthorized(){
+        return "/presentation/login/ViewLogin";
+    }
+
+//    @GetMapping("/show")
+//    public String show(Model model, @AuthenticationPrincipal(expression = "usuario") Usuario usuario){
+//        Usuario usr = new Usuario();
+//        usr.setId(usuario.getId());
+//        model.addAttribute("usuario", usr);
+//        model.addAttribute("editing", false);
+//        return "redirect:/presentation/usuarios/login";
+//    }
+
     @GetMapping("/create")
     public String createUsuario(@ModelAttribute Usuario usuario) {
         service.usuarioAdd(usuario);
-        return "redirect:/presentation/login/ViewLogin"; // Hay que cambiar las rutas
+        return "redirect:/presentation/usuarios/login";
     }
     @GetMapping("/delete/{id}")
     public String deleteUsuario(@PathVariable("id") String id) {
         service.usuarioDel(id);
-        return "redirect:/presentation/login/ViewLogin";
+        return "redirect:/presentation/usuarios/login";
     }
 
 }
