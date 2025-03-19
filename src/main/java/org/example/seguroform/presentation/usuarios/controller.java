@@ -3,6 +3,7 @@ package org.example.seguroform.presentation.usuarios;
 import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class controller {
     private Service service;
 
     @GetMapping("/login")
-    public String newLogin(Model model) {
+    public String login(Model model) {
         return "/presentation/login/ViewLogin";
     }
 
@@ -22,14 +23,14 @@ public class controller {
         return "/presentation/login/ViewLogin";
     }
 
-//    @GetMapping("/show")
-//    public String show(Model model, @AuthenticationPrincipal(expression = "usuario") Usuario usuario){
-//        Usuario usr = new Usuario();
-//        usr.setId(usuario.getId());
-//        model.addAttribute("usuario", usr);
-//        model.addAttribute("editing", false);
-//        return "redirect:/presentation/usuarios/login";
-//    }
+    @GetMapping("/show")
+    public String show(Model model, @AuthenticationPrincipal(expression = "usuario") Usuario usuario){
+        Usuario usr = new Usuario();
+        usr.setId(usuario.getId());
+        model.addAttribute("usuario", usr);
+        model.addAttribute("editing", false);
+        return "redirect:/presentation/usuarios/login";
+    }
 
     @GetMapping("/create")
     public String createUsuario(@ModelAttribute Usuario usuario) {

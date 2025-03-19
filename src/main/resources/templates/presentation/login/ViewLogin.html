@@ -17,33 +17,39 @@
 <!--        <i class="fa-solid fa-user"></i>-->
     </div>
 
-    <div class = "row cuerpo_login">
-        <div class = "info_inp contenedorLogin">
-            <i class="fa-solid fa-user"></i>
+    <form action="/login" method="post">
+        <div class = "row cuerpo_login">
+            <div class = "info_inp contenedorLogin">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class = "inp">
+                <input type="text" name="username" id="username" placeholder="User id">
+            </div>
         </div>
-        <div class = "inp">
-            <input type="text" name="ID" id="ID" placeholder="User id">
+        <div class = "row cuerpo_login">
+            <div class = "info_inp contenedorLogin">
+                <i class="fa-solid fa-key"></i>
+            </div>
+            <div class = "inp">
+                <input type="password" name="password" id="password" placeholder="User Password" required/>
+            </div>
         </div>
-    </div>
-    <div class = "row cuerpo_login">
-        <div class = "info_inp contenedorLogin">
-            <i class="fa-solid fa-key"></i>
-        </div>
-        <div class = "inp">
-            <input type="text" name="passw" id="passw" placeholder="User Password">
-        </div>
-    </div>
 
-    <div class ="d_flex just_cont cuerpo_login " >
-        <input type="submit" value = "Log in" name="logIn" id = "logIn">
-    </div>
+        <div class ="d_flex just_cont cuerpo_login " >
+            <input type="submit" name="login" id = "login" value = "Login">
+        </div>
+    </form>
     <div class ="row login_down">
-    <div class = "no_hay_cuenta">
-        <h4>Don't have an account?</h4>
-    </div>
+        <div class = "no_hay_cuenta">
+            <h4>Don't have an account?</h4>
+        </div>
         <div class = "register">
             <a class = "todo_espacio" href = "https://www.google.com"><button class = "button_register">Register here</button></a>
         </div>
+    </div>
+
+    <div th:if="${param.error != null}" class="error">
+        <p>Credenciales incorrectas</p>
     </div>
 
 </div>

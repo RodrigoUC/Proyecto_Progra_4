@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(customizer -> customizer
                         .requestMatchers("/","/presentation/buscarCita/ViewbuscarCita","/presentation/medicos/show"
-                                ,"/css/**", "/images/**").permitAll()
+                                ,"/css/**", "/images/**", "/presentation/usuarios/login", "/presentation/login/ViewLogin").permitAll()
                 ).formLogin(customizer -> customizer
                         .loginPage("/presentation/buscarCita/ViewbuscarCita").permitAll()).csrf(customizer -> customizer.disable());
         return http.build();
