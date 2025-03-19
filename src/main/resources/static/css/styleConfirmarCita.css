@@ -279,31 +279,26 @@ img.circularImage {
     cursor: pointer;
 }
 
-/* Ocultar checkbox */
-input[type="checkbox"] {
-    display: none;
-}
+.attend { background-color: green; color: white; }
+.cancel { background-color: red; color: white; }
 
-/* Cambiar estado cuando el checkbox está marcado */
-input[type="checkbox"]:checked ~ .status {
+/* Cuando Attend está seleccionado */
+#attend:checked ~ .status {
     background-color: green;
     color: white;
+    content: "Attended";
 }
-
-input[type="checkbox"]:checked ~ .status::after {
+#attend:checked ~ .status::before {
     content: "Attended";
 }
 
-input[type="checkbox"]:not(:checked) ~ .status::after {
-    content: "Pending";
-}
-
-/* Ocultar/mostrar botones según el estado */
-input[type="checkbox"]:checked ~ .buttons {
+/* Ocultar botones cuando Attend es seleccionado */
+#attend:checked ~ .actions {
     display: none;
 }
 
-input[type="checkbox"]:checked ~ .view {
+/* Mostrar el botón View cuando Attend es seleccionado */
+#attend:checked ~ .view {
     display: inline-block;
 }
 

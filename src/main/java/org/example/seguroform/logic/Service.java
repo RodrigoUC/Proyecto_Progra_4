@@ -3,6 +3,8 @@ package org.example.seguroform.logic;
 import org.example.seguroform.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -120,5 +122,18 @@ public class Service {
     public Cita citaFindById(Integer id) {
         return citaRepository.findById(id).orElse(null);
     }
+    public Iterable<Cita> citasFindByName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            // Si no se proporciona un nombre, se retornan todas las citas
+            return citaRepository.findAll();
+        }
+        List<Cita> citasNombre = new ArrayList<>();
+        for (Cita cita : citaRepository.findAll()) {
+            if (cita.getPaciente().getUsuarios().getNombre().equalsIgnoreCase(name)) {
+                citasNombre.add(cita);
+            }
+        }
 
+        return citasNombre; // Retorna la lista filtrada
+    }
 }

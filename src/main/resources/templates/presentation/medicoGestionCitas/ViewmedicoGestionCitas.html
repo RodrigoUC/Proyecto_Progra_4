@@ -10,6 +10,7 @@
         <p>Doctor - </p> <label class = "nombreDoctorTitulo">NombreDoctor</label> <p> - appointments</p>
     </div>
 
+    <form th:action="@{/presentation/citas/searchPatName}" method="get">
     <div class = "row"> <!-- Menu Status(combobox/select), Patient(input text), Search (boton) -->
         <div class = "row"><!-- status -->
             <div class = "contenedorStatusPatient info_inp"><!-- status -->
@@ -29,40 +30,48 @@
                 <label for="patientname">Patient</label>
             </div>
             <div class = "inp alig_center contenedorStatusPatient2"><!-- submit patient -->
-                <input type="text" name="patient" id="patientname" placeholder="Patient name">
+                <input type="text" name="patient" id="patientname" placeholder="Patient ID">
             </div>
         </div>
 
         <div><!-- search button -->
-            <button class = "button_search alig_center">Search</button>
+            <button type = "submit" class = "button_search alig_center">Search</button>
         </div>
-
     </div>
+    </form>
 
-    <div class = "row spaceEvenly"> <!-- aqui vienen las citas que tiene el doctor, hago una para ejemplo -->
+    <!-- aqui vienen las citas que tiene el doctor, hago una para ejemplo -->
+    <div class = "row spaceEvenly" th:each="c: ${citas}">
 
         <div class = "d_flex just_cont alig_center marg_der"> <!-- Foto -->
             <i class="fa-solid fa-user"></i>
-            <label class = "bold">NombreDoctor</label>
+            <p th:text="${c.getPaciente().getUsuarios().getNombre()}"> </p>
         </div>
 
         <div class = "d_flex just_cont alig_center marg_der"><!-- Fecha -->
-            <label class = "orange">Calendario</label>
+            <p th:text="${c.getFechaCreacion()}"> </p>
         </div>
 
         <div><!-- status -->
+            <p th:text="${c.getEstado()}"> </p>
         </div>
 
         <div class = "row"><!-- attend / cancel // view -->
-            <label>
-                <input type="checkbox">
-                <span class="status pending"></span>
-                <div class="buttons">
-                    <span style="color: green; cursor: pointer;">✔ Attend</span> |
-                    <span style="color: red; cursor: pointer;">✖ Cancel</span>
-                </div>
-                <span class="view">🔭 View</span>
-            </label>
+            <!-- Estado inicial -->
+            <span class="status">Pending</span>
+
+            <!-- Opciones Attend y Cancel -->
+            <input type="radio" id="attend" name="action">
+            <input type="radio" id="cancel" name="action">
+
+            <div class="actions">
+                <label for="attend" class="btn attend">✔ Attend</label>
+                <label for="cancel" class="btn cancel">✖ Cancel</label>
+            </div>
+
+            <!-- Botón View que solo aparece cuando se presiona Attend -->
+            <a href="#" class="view">🔍 View</a>
+
         </div>
 
     </div>
