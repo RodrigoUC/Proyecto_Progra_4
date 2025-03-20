@@ -34,8 +34,8 @@
                 <input type="password" name="clave" id="password" placeholder="User Password" required/>
             </div>
         </div>
-        <div class="cuerpo_login2" th:each="e: ${error}">
-            <h3>e</h3>
+        <div th:if="${error != null}" class="error">
+            <h3>Credenciales incorrectas</h3>
         </div>
 
         <div class ="d_flex just_cont cuerpo_login2" >
@@ -49,10 +49,6 @@
         <div class = "register">
             <a class = "todo_espacio" th:href="@{/presentation/usuarios/register}"><button class = "button_register">Register here</button></a>
         </div>
-    </div>
-
-    <div th:if="${param.error != null}" class="error">
-        <p>Credenciales incorrectas</p>
     </div>
 
 </div>

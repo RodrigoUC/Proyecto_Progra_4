@@ -39,13 +39,45 @@ public class controller {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("usuario") Usuario usuario, HttpSession session,Model model) {
+    public String login(@ModelAttribute("usuario") Usuario usuario, HttpSession session) {
         Usuario u = service.usuarioFindById(usuario.getId());
+
         if(u != null && u.getClave().equals(usuario.getClave())){
             session.setAttribute("usuario", usuario);
+            if(u.getRol().equals("paciente"))
+                return "redirect:/presentation/usuarios/login";
+            else
+                return "redirect:/presentation/usuarios/login";
         }
-        model.addAttribute("Error", "Usuario o clave incorrecta");
+        else {
+            return "redirect:/presentation/usuarios/loginWrong";
+        }
+    }
+    @PostMapping("/userRegister")
+    public String userRegister(@ModelAttribute("usuario") Usuario usuario) {
+        Usuario u = service.usuarioFindById(usuario.getId());
+        if(u == null){
+            service.usuarioAdd(usuario);
+            if(usuario.getRol().equals("paciente"))
+                return "redirect:/presentation/usuarios/login";
+            else
+                return "redirect:/presentation/usuarios/login";
+        }
+        else{
+            return "redirect:/presentation/usuarios/userExists";
+        }
+    }
+
+    @GetMapping("loginWrong")
+    public String loginWrong(Model model){
+        model.addAttribute("error", "error");
         return "/presentation/login/ViewLogin";
+    }
+
+    @GetMapping("userExists")
+    public String userExists(Model model){
+        model.addAttribute("error", "error");
+        return "/presentation/registro/ViewRegistro";
     }
 
     @GetMapping("/create")

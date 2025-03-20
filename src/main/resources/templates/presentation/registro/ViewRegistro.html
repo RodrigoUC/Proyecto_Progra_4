@@ -17,12 +17,13 @@
         <!--        <i class="fa-solid fa-user"></i>-->
     </div>
 
+    <form class = "column" action="/presentation/usuarios/userRegister" method="post">
     <div class = "row cuerpo_login">
         <div class = "info_inp contenedorLogin">
             <i class="fa-solid fa-user"></i>
         </div>
         <div class = "inp">
-            <input type="text" name="ID" id="ID" placeholder="User id">
+            <input type="text" name="id" id="ID" placeholder="User id">
         </div>
     </div>
     <div class = "row cuerpo_login">
@@ -30,7 +31,7 @@
             <i class="fa-solid fa-key"></i>
         </div>
         <div class = "inp">
-            <input type="text" name="passw" id="passw" placeholder="User Password">
+            <input type="text" name="clave" id="passw" placeholder="User Password">
         </div>
     </div>
     <div class = "row cuerpo_login">
@@ -38,7 +39,7 @@
             <i class="fa-solid fa-id-card"></i>
         </div>
         <div class = "inp">
-            <input type="text" name="userName" id="userName" placeholder="User Name">
+            <input type="text" name="nombre" id="userName" placeholder="User Name">
         </div>
     </div>
 
@@ -47,9 +48,9 @@
             <i class="fa-solid fa-id-card"></i>
         </div>
         <div class = "inp">
-            <select id="typeID" name="typeID">
-                <option value="patient" selected>Patient</option>
-                <option value="medical">Medical</option>
+            <select id="typeID" name="rol">
+                <option value="paciente" selected>Paciente</option>
+                <option value="medico">Medico</option>
             </select>
         </div>
     </div>
@@ -63,9 +64,14 @@
         </div>
     </div>
 
+        <div th:if="${error != null}" class="error">
+            <h3>Usuario ya existe</h3>
+        </div>
+
     <div class ="d_flex just_cont cuerpo_login" >
         <input type="submit" class = "back_red" value = "Register" name="register" id = "register">
     </div>
+    </form>
 </div>
 
 

@@ -19,7 +19,7 @@ public class SecurityConfig {
                         .requestMatchers("/","/presentation/buscarCita/ViewbuscarCita","/presentation/medicos/show"
                                 ,"/css/**", "/images/**", "/presentation/usuarios/login", "/presentation/login/ViewLogin",
                                 "/presentation/citas/confirmarCita", "/presentation/citas/showCitas",
-                                "/presentation/confirmarCita/ViewconfirmarCita","/presentation/medicoGestionCitas/ViewmedicoGestionCitas", "/presentation/citas/searchPatName", "/presentation/citas/actualizarEstadoCita","/presentation/citas/attendCita").permitAll()
+                                "/presentation/confirmarCita/ViewconfirmarCita","/presentation/medicoGestionCitas/ViewmedicoGestionCitas", "/presentation/citas/searchPatName", "/presentation/citas/actualizarEstadoCita","/presentation/citas/attendCita","/presentation/usuarios/loginWrong","/presentation/usuarios/register","/presentation/usuarios/userExists","/presentation/usuarios/userRegister").permitAll()
                 ).formLogin(customizer -> customizer
                         .loginPage("/presentation/buscarCita/ViewbuscarCita").permitAll()).csrf(customizer -> customizer.disable());
         return http.build();
