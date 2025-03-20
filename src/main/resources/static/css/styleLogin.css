@@ -15,7 +15,7 @@ header{
     height: 10%;
 }
 div{
-    border:1px solid black;
+    /*border:1px solid black;*/
     margin: 10px;
 }
 .cont_img_login{ /*Contiene imagen*/

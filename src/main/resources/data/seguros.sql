@@ -65,14 +65,14 @@ alter table Citas add foreign key (paciente_id) references Pacientes(id) on dele
 alter table Citas add foreign key (medico_id) references Medicos(id) on delete cascade;
 alter table Citas add foreign key (slot_id) references Slots(id) on delete cascade;
 
-
+-- Contraseña 123
 -- Inserts para Usuarios
 INSERT INTO Usuarios (id, nombre, clave, rol) VALUES
-('u001', 'Juan Perez', 'clave123', 'paciente'),
-('u002', 'Maria Gomez', 'segura456', 'medico'),
-('u003', 'Carlos Ramirez', 'admin789', 'admin'),
-('u004', 'Ana Martinez', 'pass111', 'paciente'),
-('u005', 'Pedro Jimenez', 'pass222', 'medico');
+('u001', 'Juan Perez', '$2a$12$Ds5LIAfmJYEyGyIAeHV7PeseUsjvxKK8kHzq3e2.uQvcDbp27Ggx2', 'paciente'),
+('u002', 'Maria Gomez', '$2a$12$Ds5LIAfmJYEyGyIAeHV7PeseUsjvxKK8kHzq3e2.uQvcDbp27Ggx2', 'medico'),
+('u003', 'Carlos Ramirez', '$2a$12$Ds5LIAfmJYEyGyIAeHV7PeseUsjvxKK8kHzq3e2.uQvcDbp27Ggx2', 'admin'),
+('u004', 'Ana Martinez', '$2a$12$Ds5LIAfmJYEyGyIAeHV7PeseUsjvxKK8kHzq3e2.uQvcDbp27Ggx2', 'paciente'),
+('u005', 'Pedro Jimenez', '$2a$12$Ds5LIAfmJYEyGyIAeHV7PeseUsjvxKK8kHzq3e2.uQvcDbp27Ggx2', 'medico');
 
 -- Inserts para Pacientes
 INSERT INTO Pacientes (id, telefono, direccion) VALUES

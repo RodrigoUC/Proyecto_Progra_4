@@ -47,6 +47,15 @@ public class Cita {
     @Column(name = "fecha_creacion")
     private Instant fechaCreacion;
 
+    public Cita() { }
+
+    public Cita(Medico med, Slot sl, String est){
+        this.medico = med;
+        this.slot = sl;
+        this.estado = est;
+        this.notas = " ";
+    }
+
     public Integer getId() {
         return id;
     }

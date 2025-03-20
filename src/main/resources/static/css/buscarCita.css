@@ -172,3 +172,123 @@ input[type="text"] {
     font-size: 110%;
 }
 
+
+/*Clases para la parte que se repite*/
+/* Contenedor principal */
+.citas-container {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* Doctor Información */
+.doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.doctor-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.doctor-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.doctor-specialty {
+    display: flex;
+    margin-left: 10px;
+    font-size: 14px;
+    color: gray;
+}
+
+.doctor-costo{
+    display: flex;
+    font-weight: bold;
+    color: #3458a0;
+    font-size: 18px;
+}
+
+/* Información del hospital */
+.hospital-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #777;
+}
+
+/* Contenedor de fechas */
+.dates-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+}
+
+/* Estilos de fecha */
+.date {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d18c40;
+}
+
+/* Contenedor de horarios */
+.times-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Estilos de cada horario */
+.time-slot {
+    background: #dde8ff;
+    color: #3458a0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.time-slot:hover {
+    background: #3458a0;
+    color: white;
+}
+
+/* Botón de agendamiento */
+.schedule-button {
+    background: transparent;
+    border: none;
+    color: #3458a0;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10%;
+}
+
+.arrow-button{
+    color: #d18c40;
+    font-weight: bold;
+}
+
+.schedule-button:hover {
+    text-decoration: underline;
+}

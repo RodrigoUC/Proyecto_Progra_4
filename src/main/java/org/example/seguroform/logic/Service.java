@@ -58,8 +58,8 @@ public class Service {
     public void pacienteDel(String id) {
         pacienteRepository.deleteById(id);
     }
-    public Optional<Paciente> pacienteFindById(String id) {
-        return pacienteRepository.findById(id);
+    public Paciente pacienteFindById(String id) {
+        return pacienteRepository.findById(id).orElse(null);
     }
 
     // Medicos
@@ -89,8 +89,8 @@ public class Service {
     public void administradorDel(String id) {
         administradorRepository.deleteById(id);
     }
-    public Optional<Administrador> administradorFindById(String id) {
-        return administradorRepository.findById(id);
+    public Administrador administradorFindById(String id) {
+        return administradorRepository.findById(id).orElse(null);
     }
 
     //Slots

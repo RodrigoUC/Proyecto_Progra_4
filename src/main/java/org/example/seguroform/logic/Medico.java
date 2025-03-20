@@ -6,6 +6,15 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import org.example.seguroform.logic.Slot;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "medicos")
 public class Medico {
@@ -46,6 +55,17 @@ public class Medico {
     @Lob
     @Column(name = "presentacion")
     private String presentacion;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Slot> slots; // ✅ Relación con la tabla "slots"
+
+    public List<Slot> getSlots() {
+        return slots;
+    }
+
+    public void setSlots(List<Slot> slots) {
+        this.slots = slots;
+    }
 
     public String getId() {
         return id;
@@ -111,4 +131,26 @@ public class Medico {
         this.presentacion = presentacion;
     }
 
+    public String getFecha(){
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"));
+    }
+
+    public List<Cita> fechaCitas(){
+        LocalDate date = LocalDate.now();
+        List<Cita> citas = new ArrayList<>();
+        int dia = date.getDayOfWeek().getValue();
+        LocalDateTime t;
+        LocalDateTime et;
+        for(Slot s : this.slots){
+            if(s.getDia() == dia){
+                t = date.atTime(s.getHoraInicio().getHour(),0);
+                et = date.atTime(s.getHoraFin().getHour(),0);
+                while(t.isBefore(et)){
+                    citas.add(new Cita(this, s, "pendiente"));
+                    t = t.plusMinutes(frecuenciaCitas);
+                }
+            }
+        }
+        return citas;
+    }
 }

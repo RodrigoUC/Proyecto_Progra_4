@@ -30,44 +30,38 @@
     </div>
   </div>
 
-  <div class="row" th:each="m: ${medicos}">
+  <div class="citas-container row" th:each="m : ${medicos}" th:if="${not #lists.isEmpty(medicos)}">
     <div>
-      <div class="row">
+      <div class="doctor-info">
         <div>
-          <img th:src="${m.getFoto()}" alt="">
+          <img th:src="${m.getFoto()}" alt="Imagen medico">
         </div>
         <div>
-          <p th:text="${m.getUsuarios().getNombre()}"></p>
-          <p th:text="${m.getEspecialidad()}"></p>
+          <div class="row">
+            <p class="doctor-name" th:text="${m.getUsuarios().getNombre()}"></p>
+            <p class="doctor-costo" th:text="${m.getCostoConsulta()}"></p>
+          </div>
+          <p class="doctor-specialty" th:text="${m.getEspecialidad()}"></p>
         </div>
-        <div>
-          <p th:text="${m.getCostoConsulta()}"></p>
-        </div>
+
       </div>
 
       <hr>
 
-      <div>
-        <p th:text="${m.getLocalidad()}"></p>
+      <div class="hospital-info">
+        <span th:text="${m.getLocalidad()}"></span>
+      </div>
+    </div>
+
+    <div class="dates-container column">
+      <span class="date" th:text="${m.getFecha()}"></span>
+      <div class="times-container" th:each="slot : ${m.slots}">
+        <span class="time-slot" th:text="${slot.getHoraInicio()}"></span>
       </div>
     </div>
 
     <div>
-      <p>18/02/2025</p>
-      <div>
-
-      </div>
-    </div>
-
-    <div>
-      <p>19/02/2025</p>
-      <div>
-
-      </div>
-    </div>
-
-    <div>
-      <button>Schedule -></button>
+      <button class="schedule-button">Schedule <span class="arrow-button">🡲</span></button>
     </div>
   </div>
 

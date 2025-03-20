@@ -14,6 +14,11 @@ public class controller {
     @Autowired
     private Service service;
 
+    @GetMapping("/about")
+    public String about() {
+        return "/presentation/aboutUs/aboutUs";
+    }
+
     @GetMapping("/create")
     public String createAdministrador(@ModelAttribute Administrador administrador) {
         service.administradorAdd(administrador);

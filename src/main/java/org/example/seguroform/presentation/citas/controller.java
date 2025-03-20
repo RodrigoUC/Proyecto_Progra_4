@@ -14,12 +14,12 @@ public class controller {
 
     @GetMapping("/showCitas")
     public String showCitas(Model model) {
-        return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
+        return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
 
     @GetMapping("/confirmarCita")
     public String confirmarCita(Model model) {
-        return "/presentation/confirmarCita/ViewconfirmarCita";
+        return "/presentation/confirmarCita/ViewConfirmarCita";
     }
 
     @GetMapping("/create")
