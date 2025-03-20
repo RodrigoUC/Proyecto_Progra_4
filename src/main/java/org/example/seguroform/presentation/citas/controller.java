@@ -59,7 +59,7 @@ public class controller {
             }
             service.citaUpdate(cita);
         }
-        return "redirect:/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
+        return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
     }
 
 }

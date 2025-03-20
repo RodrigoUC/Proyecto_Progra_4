@@ -17,25 +17,28 @@
 <!--        <i class="fa-solid fa-user"></i>-->
     </div>
 
-    <form action="/login" method="post">
-        <div class = "row cuerpo_login">
+    <form class = "column" action="/presentation/usuarios/login" method="post">
+        <div class = "row cuerpo_login2">
             <div class = "info_inp contenedorLogin">
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class = "inp">
-                <input type="text" name="username" id="username" placeholder="User id">
+                <input type="text" name="id" id="username" placeholder="User id">
             </div>
         </div>
-        <div class = "row cuerpo_login">
+        <div class = "row cuerpo_login2">
             <div class = "info_inp contenedorLogin">
                 <i class="fa-solid fa-key"></i>
             </div>
             <div class = "inp">
-                <input type="password" name="password" id="password" placeholder="User Password" required/>
+                <input type="password" name="clave" id="password" placeholder="User Password" required/>
             </div>
         </div>
+        <div class="cuerpo_login2" th:each="e: ${error}">
+            <h3>e</h3>
+        </div>
 
-        <div class ="d_flex just_cont cuerpo_login " >
+        <div class ="d_flex just_cont cuerpo_login2" >
             <input type="submit" name="login" id = "login" value = "Login">
         </div>
     </form>

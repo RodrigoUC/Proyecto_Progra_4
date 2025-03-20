@@ -1,5 +1,6 @@
 package org.example.seguroform.presentation.usuarios;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,16 @@ public class controller {
         model.addAttribute("usuario", usr);
         model.addAttribute("editing", false);
         return "redirect:/presentation/usuarios/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute("usuario") Usuario usuario, HttpSession session,Model model) {
+        Usuario u = service.usuarioFindById(usuario.getId());
+        if(u != null && u.getClave().equals(usuario.getClave())){
+            session.setAttribute("usuario", usuario);
+        }
+        model.addAttribute("Error", "Usuario o clave incorrecta");
+        return "/presentation/login/ViewLogin";
     }
 
     @GetMapping("/create")
