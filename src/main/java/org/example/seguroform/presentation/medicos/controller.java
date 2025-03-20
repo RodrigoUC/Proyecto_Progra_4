@@ -35,6 +35,24 @@ public class controller {
         return "redirect:/presentation/login/ViewLogin";
     }
 
+    @GetMapping("/showExtendido")
+    public String showExtendido(Model model) {
+        Iterable<Medico> med = service.medicoFindAll();
+        Iterable<Slot> slot = service.slotFindAll();
+        this.setSlots(slot, med);
+        for(Medico medico : med) {
+            List<Slot> sl = medico.getSlots();
+            System.out.println(medico.getUsuarios().getNombre());
+            for(Slot s: sl){
+                System.out.println(s.getHoraInicio());
+            }
+        }
+
+        model.addAttribute("citas", service.citaFindAll());
+        model.addAttribute("medicos", service.medicoFindAll());
+        return "/presentation/buscarCita/ViewBuscarHorarioExtendido";
+    }
+
     @GetMapping("/show")
     public String show(Model model) {
         Iterable<Medico> med = service.medicoFindAll();
@@ -51,12 +69,6 @@ public class controller {
         model.addAttribute("citas", service.citaFindAll());
         model.addAttribute("medicos", med);
         return "/presentation/buscarCita/ViewBuscarCita";
-    }
-
-    @GetMapping("/showExtendido")
-    public String showExtendido(Model model) {
-        model.addAttribute("medicos", service.medicoFindAll());
-        return "/presentation/buscarCita/ViewBuscarHorarioExtendido";
     }
 
     @GetMapping("/confirm/{id}")

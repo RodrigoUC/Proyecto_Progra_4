@@ -26,7 +26,7 @@
     </div>
 
     <div class = "esp_buscar">
-      <a href = "https://www.google.com"><button class = "button_search">Search</button></a>
+      <a th:href = "@{/presentation/medicos/show}"><button class = "button_search">Search</button></a>
     </div>
   </div>
 
@@ -61,7 +61,7 @@
     </div>
 
     <div>
-      <button class="schedule-button">Schedule <span class="arrow-button">🡲</span></button>
+      <a th:href="@{/presentation/medicos/showExtendido}"><button class="schedule-button">Schedule <span class="arrow-button">🡲</span></button></a>
     </div>
   </div>
 

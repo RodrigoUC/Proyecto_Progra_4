@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @org.springframework.stereotype.Controller("administradores")
-@RequestMapping("/presentation/administadores")
+@RequestMapping("/presentation/administradores")
 public class controller {
     @Autowired
     private Service service;

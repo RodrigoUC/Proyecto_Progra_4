@@ -201,14 +201,14 @@ input[type="text"] {
 
 .doctor-name {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 17px;
     margin-right: 10px;
 }
 
 .doctor-specialty {
     display: flex;
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 16px;
     color: gray;
 }
 
@@ -224,8 +224,7 @@ input[type="text"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    color: #777;
+    font-size: 17px;
 }
 
 /* Contenedor de fechas */

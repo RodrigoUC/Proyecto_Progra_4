@@ -99,8 +99,8 @@ public class Medico {
         this.localidad = localidad;
     }
 
-    public Float getCostoConsulta() {
-        return costoConsulta;
+    public Integer getCostoConsulta() {
+        return this.costoConsulta.intValue();
     }
 
     public void setCostoConsulta(Float costoConsulta) {

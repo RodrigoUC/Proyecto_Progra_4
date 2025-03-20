@@ -7,6 +7,7 @@ html, body {
     height: 100%; /* Asegura que toda la página tenga altura */
     width: 100%;
     margin: 0;
+    font-family: 'Inter', sans-serif;
 }
 header{
     display: flex;
@@ -300,4 +301,13 @@ height: 70%;
     margin: auto;
     margin-bottom: 5%;
     padding: 2%;
+}
+
+.about_text{
+    display: flex;
+    margin-right: 22vw;
+    margin-left: 22vw;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
 }
