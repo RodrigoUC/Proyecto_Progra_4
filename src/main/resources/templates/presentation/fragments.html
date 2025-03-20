@@ -65,13 +65,29 @@
 
     <div class = "row cuerpo_header">   <!--Opciones a la derecha-->
         <div class = "opc_header alig_center"><a th:href="@{/presentation/administradores/about}">About...</a></div>
-        <div class = "opc_header alig_center"><a th:href="@{/presentation/medicos/show}">Search</a></div>
-        <div class = "opc_header alig_center"><a th:href="@{/presentation/medicos/showExtendido}">Search_Ext</a></div>
-        <div class = "opc_header alig_center"><a th:href="@{/presentation/usuarios/login}">Login</a></div>
-        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/showCitas}">Citas</a></div>
+        <div class = "opc_header alig_center" th:if="${session.usuario != null && session.usuario.rol == 'paciente'}"> <a th:href="@{/presentation/administradores/about}">History</a></div>
+        <div class = "opc_header alig_center" th:if="${session.usuario == null || session.usuario.rol == 'paciente'}"><a th:href="@{/presentation/medicos/show}">Search</a></div>
+<!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/medicos/showExtendido}">Search_Ext</a></div>-->
+
+        <div class = "opc_header alig_center" th:unless="${session.usuario}"><a th:href="@{/presentation/usuarios/login}">Login</a></div>
+        <div class = "opc_header alig_center" th:if="${session.usuario != null && session.usuario.rol == 'medico'}"><a th:href="@{/presentation/citas/showCitas}">Appointments</a></div>
+        <div class = "opc_header alig_center" th:if="${session.usuario != null && session.usuario.rol == 'medico'}"><a th:href="@{/presentation/citas/showCitas}">Profile</a></div>
+        <div class = "opc_header alig_center menuHeader" th:if="${session.usuario != null}">
+            <p th:text="${session.usuario.id + ' ▼'}"></p>
+            <div class="menuDesplegable">
+                <ul>
+                    <li><p>Op 1</p></li>
+                    <li><p>Op 2</p></li>
+                    <li><p>Op 3</p></li>
+                </ul>
+            </div>
+
+        </div>
+
+<!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/showCitas}">Citas</a></div>-->
 <!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/show2}">Citas</a></div>-->
 <!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/searchPatName}">Citas</a></div>-->
-        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/confirmarCita}">Confirmar</a></div>
+<!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/confirmarCita}">Confirmar</a></div>-->
 <!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/medicos/confirm/u200}">Confirmar_Id</a></div>-->
     </div>
 </header>

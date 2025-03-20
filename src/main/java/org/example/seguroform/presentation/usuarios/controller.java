@@ -5,6 +5,7 @@ import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,11 +42,11 @@ public class controller {
     @PostMapping("/login")
     public String login(@ModelAttribute("usuario") Usuario usuario, HttpSession session) {
         Usuario u = service.usuarioFindById(usuario.getId());
-
-        if(u != null && u.getClave().equals(usuario.getClave())){
-            session.setAttribute("usuario", usuario);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if(u != null && passwordEncoder.matches(usuario.getClave(), u.getClave())){
+            session.setAttribute("usuario", u);
             if(u.getRol().equals("paciente"))
-                return "redirect:/presentation/usuarios/login";
+                return "redirect:/presentation/medicos/show";
             else
                 return "redirect:/presentation/usuarios/login";
         }
@@ -57,6 +58,8 @@ public class controller {
     public String userRegister(@ModelAttribute("usuario") Usuario usuario) {
         Usuario u = service.usuarioFindById(usuario.getId());
         if(u == null){
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            usuario.setClave(passwordEncoder.encode(usuario.getClave()));
             service.usuarioAdd(usuario);
             if(usuario.getRol().equals("paciente"))
                 return "redirect:/presentation/usuarios/login";
