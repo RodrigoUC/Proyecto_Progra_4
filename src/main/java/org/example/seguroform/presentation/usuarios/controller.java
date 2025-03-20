@@ -1,5 +1,6 @@
 package org.example.seguroform.presentation.usuarios;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class controller {
         return "/presentation/login/ViewLogin";
     }
 
+@GetMapping("/register")
+    public String register(Model model) {
+        return "/presentation/registro/ViewRegistro";
+    }
+
     @GetMapping("/notAuthorized")
     public String notAuthorized(){
         return "/presentation/login/ViewLogin";
@@ -30,6 +36,48 @@ public class controller {
         model.addAttribute("usuario", usr);
         model.addAttribute("editing", false);
         return "redirect:/presentation/usuarios/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute("usuario") Usuario usuario, HttpSession session) {
+        Usuario u = service.usuarioFindById(usuario.getId());
+
+        if(u != null && u.getClave().equals(usuario.getClave())){
+            session.setAttribute("usuario", usuario);
+            if(u.getRol().equals("paciente"))
+                return "redirect:/presentation/usuarios/login";
+            else
+                return "redirect:/presentation/usuarios/login";
+        }
+        else {
+            return "redirect:/presentation/usuarios/loginWrong";
+        }
+    }
+    @PostMapping("/userRegister")
+    public String userRegister(@ModelAttribute("usuario") Usuario usuario) {
+        Usuario u = service.usuarioFindById(usuario.getId());
+        if(u == null){
+            service.usuarioAdd(usuario);
+            if(usuario.getRol().equals("paciente"))
+                return "redirect:/presentation/usuarios/login";
+            else
+                return "redirect:/presentation/usuarios/login";
+        }
+        else{
+            return "redirect:/presentation/usuarios/userExists";
+        }
+    }
+
+    @GetMapping("loginWrong")
+    public String loginWrong(Model model){
+        model.addAttribute("error", "error");
+        return "/presentation/login/ViewLogin";
+    }
+
+    @GetMapping("userExists")
+    public String userExists(Model model){
+        model.addAttribute("error", "error");
+        return "/presentation/registro/ViewRegistro";
     }
 
     @GetMapping("/create")

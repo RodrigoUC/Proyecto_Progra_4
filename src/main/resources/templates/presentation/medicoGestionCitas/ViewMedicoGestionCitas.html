@@ -10,6 +10,7 @@
         <p>Doctor - </p> <label class = "nombreDoctorTitulo">NombreDoctor</label> <p> - appointments</p>
     </div>
 
+    <form th:action="@{/presentation/citas/searchPatName}" method="get">
     <div class = "row"> <!-- Menu Status(combobox/select), Patient(input text), Search (boton) -->
         <div class = "row"><!-- status -->
             <div class = "contenedorStatusPatient info_inp"><!-- status -->
@@ -29,43 +30,48 @@
                 <label for="patientname">Patient</label>
             </div>
             <div class = "inp alig_center contenedorStatusPatient2"><!-- submit patient -->
-                <input type="text" name="patient" id="patientname" placeholder="Patient name">
+                <input type="text" name="patient" id="patientname" placeholder="Patient ID">
             </div>
         </div>
 
         <div><!-- search button -->
-            <button class = "button_search alig_center">Search</button>
+            <button type = "submit" class = "button_search alig_center">Search</button>
         </div>
-
     </div>
+    </form>
 
-    <div class = "row spaceEvenly"> <!-- aqui vienen las citas que tiene el doctor, hago una para ejemplo -->
+    <form th:action="@{/presentation/citas/attendCita}" method="post">
+        <!-- Recorremos todas las citas -->
+        <div class="row spaceEvenly" th:each="c: ${citas}">
 
-        <div class = "d_flex just_cont alig_center marg_der"> <!-- Foto -->
-            <i class="fa-solid fa-user"></i>
-            <label class = "bold">NombreDoctor</label>
-        </div>
+            <div class="d_flex just_cont alig_center marg_der"> <!-- Foto -->
+                <i class="fa-solid fa-user"></i>
+                <p th:text="${c.getPaciente().getUsuarios().getNombre()}"></p>
+            </div>
 
-        <div class = "d_flex just_cont alig_center marg_der"><!-- Fecha -->
-            <label class = "orange">Calendario</label>
-        </div>
+            <div class="d_flex just_cont alig_center marg_der"><!-- Fecha -->
+                <p th:text="${c.getFechaCreacion()}"></p>
+            </div>
 
-        <div><!-- status -->
-        </div>
+            <div><!-- status -->
+                <p th:text="${c.getEstado()}"></p>
+            </div>
 
-        <div class = "row"><!-- attend / cancel // view -->
-            <label>
-                <input type="checkbox">
-                <span class="status pending"></span>
-                <div class="buttons">
-                    <span style="color: green; cursor: pointer;">✔ Attend</span> |
-                    <span style="color: red; cursor: pointer;">✖ Cancel</span>
+            <div class="row"><!-- Attend / Cancel -->
+                <!-- Input oculto para enviar el ID de la cita -->
+                <input type="hidden" name="idCita" th:value="${c.id}">
+
+                <div class="actions">
+                    <button type="submit" name="action" value="attend" class="btn attend">✔ Attend</button>
+                    <button type="submit" name="action" value="cancel" class="btn cancel">✖ Cancel</button>
                 </div>
-                <span class="view">🔭 View</span>
-            </label>
+            </div>
         </div>
+    </form>
 
     </div>
+    </form>
+
 
 
 </div>

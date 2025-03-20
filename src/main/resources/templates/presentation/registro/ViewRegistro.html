@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/presentation/fragments :: head}">
+    <title>Medical Appointments</title>
+
+<body class = "column">
+<header th:replace="~{/presentation/fragments :: header}"></header>
+
+
+<div class = "login column">   <!-- Donde se piden los datos -->
+    <div class = "text_center title_login">
+        <h1>Register</h1>
+    </div>
+
+    <div class = "cont_img_login">
+        <img class ="img_login" src = "/images/login.jpeg">
+        <!--        <i class="fa-solid fa-user"></i>-->
+    </div>
+
+    <form class = "column" action="/presentation/usuarios/userRegister" method="post">
+    <div class = "row cuerpo_login">
+        <div class = "info_inp contenedorLogin">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class = "inp">
+            <input type="text" name="id" id="ID" placeholder="User id">
+        </div>
+    </div>
+    <div class = "row cuerpo_login">
+        <div class = "info_inp contenedorLogin">
+            <i class="fa-solid fa-key"></i>
+        </div>
+        <div class = "inp">
+            <input type="text" name="clave" id="passw" placeholder="User Password">
+        </div>
+    </div>
+    <div class = "row cuerpo_login">
+        <div class = "info_inp contenedorLogin">
+            <i class="fa-solid fa-id-card"></i>
+        </div>
+        <div class = "inp">
+            <input type="text" name="nombre" id="userName" placeholder="User Name">
+        </div>
+    </div>
+
+    <div class = "row cuerpo_login">
+        <div class = "info_inp contenedorLogin">
+            <i class="fa-solid fa-id-card"></i>
+        </div>
+        <div class = "inp">
+            <select id="typeID" name="rol">
+                <option value="paciente" selected>Paciente</option>
+                <option value="medico">Medico</option>
+            </select>
+        </div>
+    </div>
+
+    <div class = "row cuerpo_login">
+        <div class = "info_inp contenedorLogin">
+            <i class="fa-solid fa-id-card"></i>
+        </div>
+        <div class = "inp">
+            <input type="file" class = "login" accept="image/*" name="imagen" id="imagen">
+        </div>
+    </div>
+
+        <div th:if="${error != null}" class="error">
+            <h3>Usuario ya existe</h3>
+        </div>
+
+    <div class ="d_flex just_cont cuerpo_login" >
+        <input type="submit" class = "back_red" value = "Register" name="register" id = "register">
+    </div>
+    </form>
+</div>
+
+
+
+<footer th:replace="~{/presentation/fragments :: footer}"></footer>
+</body>
+</html>

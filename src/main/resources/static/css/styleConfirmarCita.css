@@ -279,35 +279,47 @@ img.circularImage {
     cursor: pointer;
 }
 
-/* Ocultar checkbox */
-input[type="checkbox"] {
-    display: none;
+.attend {
+    background-color: white; color: green;
+}
+.cancel {
+    background-color: white; color: red;
 }
 
-/* Cambiar estado cuando el checkbox está marcado */
-input[type="checkbox"]:checked ~ .status {
+/* Cuando Attend está seleccionado */
+input[type="radio"]:checked ~ .status {
     background-color: green;
     color: white;
+    content: "Attended";
 }
-
-input[type="checkbox"]:checked ~ .status::after {
+input[type="radio"]:checked ~ .status::before {
     content: "Attended";
 }
 
-input[type="checkbox"]:not(:checked) ~ .status::after {
-    content: "Pending";
-}
-
-/* Ocultar/mostrar botones según el estado */
-input[type="checkbox"]:checked ~ .buttons {
+/* Ocultar botones cuando Attend es seleccionado */
+input[type="radio"]:checked ~ .actions {
     display: none;
 }
 
-input[type="checkbox"]:checked ~ .view {
+/* Mostrar el botón View cuando Attend es seleccionado */
+input[type="radio"]:checked ~ .view {
     display: inline-block;
 }
 
-select, input[type="text"] {
+/* Ocultar los radio buttons */
+input[type="radio"] {
+    display: none;
+}
+
+/* Estilizar los botones de Attend y Cancel como botones */
+.actions label {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.select, input[type="text"] {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

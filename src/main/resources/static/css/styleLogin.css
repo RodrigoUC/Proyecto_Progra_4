@@ -28,6 +28,15 @@ div{
 .cuerpo_login{
     width: 80%;
     height: 10%;
+    /*border:1px solid red;*/
+}
+.cuerpo_login2{
+    width: 100%;
+    height: 20%;
+    margin:0;
+    margin-bottom: 10%;
+
+    /*border:1px solid red;*/
 }
 .img_redonda{
     border-radius: 50%;
@@ -111,18 +120,33 @@ input[type="submit"] {
     border:none;
     border-radius: 1%;
 }
-input[type="text"]{
+
+input[type="text"], input[type="password"]{
     background-color: white;
    height: 100%;
     width: 100%;
     display: block;
     border: 2px solid #f0f1f2 ;
 }
+input[type="file"]{
+    background-color: white;
+   height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 2px solid #f0f1f2 ;
+}
 
 .inp{
 width: 80%;
+
     margin: 0; /* Quita cualquier margen extra */
 }
+select{
+    width: 100%;
+    height: 100%;
+}
+
 .info_inp{
     width: 20%;
     margin: 0; /* Quita cualquier margen extra */
@@ -257,4 +281,23 @@ font-size: 250%
 .cel_header{
     margin-left: 0;
     margin-right: 0;
+}
+.back_red{
+    background-color: red !important;
+}
+.login form {
+height: 70%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    /*border: 1px solid red;*/
+    margin: 0;
+}
+.error{
+    background-color: #fd9b9b;
+    color: black;
+    margin: auto;
+    margin-bottom: 5%;
+    padding: 2%;
 }
