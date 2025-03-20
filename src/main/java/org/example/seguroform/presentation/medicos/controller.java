@@ -7,10 +7,7 @@ import org.example.seguroform.logic.Slot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +20,14 @@ import java.util.List;
 public class controller {
     @Autowired
     private Service service;
+
+    @ModelAttribute("medicosSearch")
+    public Medico medicosSearch() {
+        Medico medicosSearch = new Medico();
+        medicosSearch.setEspecialidad("");
+        medicosSearch.setLocalidad("");
+        return medicosSearch;
+    }
 
     @GetMapping("/create")
     public String createMedico(@ModelAttribute Medico medico) {
@@ -68,6 +73,32 @@ public class controller {
 
         model.addAttribute("citas", service.citaFindAll());
         model.addAttribute("medicos", med);
+        return "/presentation/buscarCita/ViewBuscarCita";
+    }
+
+    @PostMapping("/search")
+    public String search( @ModelAttribute("medicosSearch") Medico medicosSearch,Model model) {
+
+        Iterable<Medico> med = service.medicosSearch(medicosSearch.getEspecialidad(), medicosSearch.getLocalidad());
+        Iterable<Slot> slot = service.slotFindAll();
+        this.setSlots(slot, med);
+        for(Medico medico : med) {
+            List<Slot> sl = medico.getSlots();
+            System.out.println(medico.getUsuarios().getNombre());
+            for(Slot s: sl){
+                System.out.println(s.getHoraInicio());
+            }
+        }
+
+        model.addAttribute("citas", service.citaFindAll());
+        model.addAttribute("medicos", med);
+        return "/presentation/buscarCita/ViewBuscarCita";
+    }
+
+    //Ver como implementar esta parte
+    @GetMapping("/showFilter")
+    public String showFilter(@ModelAttribute("medicosSearch") Medico medicosSearch, Model model) {
+        model.addAttribute("medicos", service.medicosSearch(medicosSearch.getEspecialidad(), medicosSearch.getLocalidad()));
         return "/presentation/buscarCita/ViewBuscarCita";
     }
 

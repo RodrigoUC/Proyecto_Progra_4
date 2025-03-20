@@ -6,29 +6,31 @@
 
 <div class = "cuerpo_buscar_cita column">
 
-  <div class = "row busqueda">
-    <div class = "row esp_buscar">
-    <div class = "info_bus">
-      <p>Speciality</p>
-    </div>
-      <div class = "input_buscar">
-        <input type="text" name="speciality" id="speciality" placeholder="User id">
-      </div>
-    </div>
-
-    <div class = "row esp_buscar">
+  <form class="form_busqueda row" action="/presentation/medicos/search" method="POST" th:object="${medicosSearch}">
+    <div class = "row busqueda">
+      <div class = "row esp_buscar">
       <div class = "info_bus">
-        <p>City</p>
+        <p>Especialidad</p>
       </div>
-      <div class = "input_buscar">
-        <input type="text" name="ID" id="ID" placeholder="User id">
+        <div class = "input_buscar">
+          <input type="text" name="speciality" id="speciality" placeholder="Especialidad" th:field="*{especialidad}">
+        </div>
       </div>
-    </div>
 
-    <div class = "esp_buscar">
-      <a th:href = "@{/presentation/medicos/show}"><button class = "button_search">Search</button></a>
+      <div class = "row esp_buscar">
+        <div class = "info_bus">
+          <p>Localizacion</p>
+        </div>
+        <div class = "input_buscar">
+          <input type="text" name="city" id="city" placeholder="Localidad" th:field="*{localidad}">
+        </div>
+      </div>
+
+      <div class = "esp_buscar_button">
+        <input type="submit" name="buscar" value="Buscar" class="button_search">
+      </div>
     </div>
-  </div>
+  </form>
 
   <div class="citas-container row" th:each="m : ${medicos}" th:if="${not #lists.isEmpty(medicos)}">
     <div>
@@ -37,7 +39,7 @@
           <img th:src="${m.getFoto()}" alt="Imagen medico">
         </div>
         <div>
-          <div class="row">
+          <div class="row adjust_anchor">
             <p class="doctor-name" th:text="${m.getUsuarios().getNombre()}"></p>
             <p class="doctor-costo" th:text="${m.getCostoConsulta()}"></p>
           </div>
@@ -60,7 +62,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="schedule_container">
       <a th:href="@{/presentation/medicos/showExtendido}"><button class="schedule-button">Schedule <span class="arrow-button">🡲</span></button></a>
     </div>
   </div>

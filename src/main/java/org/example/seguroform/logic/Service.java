@@ -65,6 +65,10 @@ public class Service {
     }
 
     // Medicos
+    public List<Medico> medicosSearch(String especialidad, String localidad) {
+        return medicoRepository.findByEspecialidadContainingAndLocalidadContaining(especialidad, localidad);
+    }
+
     public Iterable<Medico> medicoFindAll(){
         return medicoRepository.findAll();
     }

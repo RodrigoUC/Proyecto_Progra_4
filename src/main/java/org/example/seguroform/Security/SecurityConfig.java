@@ -26,7 +26,8 @@ public class SecurityConfig {
                                 "/presentation/usuarios/loginWrong","/presentation/usuarios/register",
                                 "/presentation/usuarios/userExists","/presentation/usuarios/userRegister",
                                 "/presentation/administradores/about", "/presentation/aboutUs/aboutUs"
-                                ,"/presentation/medicos/showExtendido", "/presentation/buscarCita/ViewBuscarHorarioExtendido").permitAll()
+                                ,"/presentation/medicos/showExtendido", "/presentation/buscarCita/ViewBuscarHorarioExtendido"
+                                ,"/presentation/medicos/search", "/presentation/medicos/showFilter").permitAll()
                 ).formLogin(customizer -> customizer
                         .loginPage("/presentation/buscarCita/ViewbuscarCita").permitAll()).csrf(customizer -> customizer.disable());
         return http.build();
