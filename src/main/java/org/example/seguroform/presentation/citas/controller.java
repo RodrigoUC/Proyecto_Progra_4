@@ -48,4 +48,18 @@ public class controller {
         return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
     }
 
+    @PostMapping("/attendCita")
+    public String actualizarEstadoCita(@RequestParam("idCita") int id, @RequestParam("action") String action) {
+        Cita cita = service.citaFindById(id);
+        if (cita != null) {
+            if ("attend".equals(action)) {
+                cita.setEstado("completada");
+            } else if ("cancel".equals(action)) {
+                cita.setEstado("cancelada");
+            }
+            service.citaUpdate(cita);
+        }
+        return "redirect:/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
+    }
+
 }

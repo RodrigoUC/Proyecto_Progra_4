@@ -122,6 +122,11 @@ public class Service {
     public Cita citaFindById(Integer id) {
         return citaRepository.findById(id).orElse(null);
     }
+
+    public void citaUpdate(Cita cita) {
+        citaRepository.save(cita);
+    }
+
     public Iterable<Cita> citasFindByName(String name) {
         if (name == null || name.trim().isEmpty()) {
             // Si no se proporciona un nombre, se retornan todas las citas

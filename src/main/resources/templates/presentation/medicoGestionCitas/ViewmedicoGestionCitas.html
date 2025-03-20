@@ -40,42 +40,37 @@
     </div>
     </form>
 
-    <!-- aqui vienen las citas que tiene el doctor, hago una para ejemplo -->
-    <div class="row spaceEvenly" th:each="c: ${citas}">
+    <form th:action="@{/presentation/citas/attendCita}" method="post">
+        <!-- Recorremos todas las citas -->
+        <div class="row spaceEvenly" th:each="c: ${citas}">
 
-        <div class="d_flex just_cont alig_center marg_der"> <!-- Foto -->
-            <i class="fa-solid fa-user"></i>
-            <p th:text="${c.getPaciente().getUsuarios().getNombre()}"> </p>
-        </div>
-
-        <div class="d_flex just_cont alig_center marg_der"><!-- Fecha -->
-            <p th:text="${c.getFechaCreacion()}"> </p>
-        </div>
-
-        <div><!-- status -->
-            <p th:text="${c.getEstado()}"> </p>
-        </div>
-
-        <div class="row"><!-- attend / cancel // view -->
-            <!-- Estado inicial -->
-            <span class="status">Pending</span>
-
-            <!-- Opciones Attend y Cancel con names únicos para cada cita -->
-            <input type="radio" id="attend-${c.id}" name="action-attend-${c.id}" class="attend-radio">
-            <input type="radio" id="cancel-${c.id}" name="action-cancel-${c.id}" class="cancel-radio">
-
-            <div class="actions">
-                <label for="attend-${c.id}" class="btn attend">✔ Attend</label>
-                <label for="cancel-${c.id}" class="btn cancel">✖ Cancel</label>
+            <div class="d_flex just_cont alig_center marg_der"> <!-- Foto -->
+                <i class="fa-solid fa-user"></i>
+                <p th:text="${c.getPaciente().getUsuarios().getNombre()}"></p>
             </div>
 
-            <!-- Botón View que solo aparece cuando se presiona Attend -->
-            <a href="#" class="view">🔍 View</a>
+            <div class="d_flex just_cont alig_center marg_der"><!-- Fecha -->
+                <p th:text="${c.getFechaCreacion()}"></p>
+            </div>
 
+            <div><!-- status -->
+                <p th:text="${c.getEstado()}"></p>
+            </div>
+
+            <div class="row"><!-- Attend / Cancel -->
+                <!-- Input oculto para enviar el ID de la cita -->
+                <input type="hidden" name="idCita" th:value="${c.id}">
+
+                <div class="actions">
+                    <button type="submit" name="action" value="attend" class="btn attend">✔ Attend</button>
+                    <button type="submit" name="action" value="cancel" class="btn cancel">✖ Cancel</button>
+                </div>
+            </div>
         </div>
+    </form>
 
     </div>
-
+    </form>
 
 
 
