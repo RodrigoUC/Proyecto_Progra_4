@@ -3,12 +3,14 @@ package org.example.seguroform.presentation.citas;
 import org.example.seguroform.logic.Cita;
 import org.example.seguroform.logic.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@org.springframework.stereotype.Controller("citas")
+@Controller("citas")
 @RequestMapping("/presentation/citas")
 public class controller {
     @Autowired
@@ -41,12 +43,31 @@ public class controller {
 //        return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
 //    }
 
-    @GetMapping("/searchPatName") // No necesita {patient} porque @RequestParam busca ?patient=valor en url
-    public String searchPatName(@RequestParam("patient") String name, Model model) {
+    @GetMapping("/searchPatName")
+    public String searchPatName(@RequestParam("patient") String name, @RequestParam("status") String status, Model model) {
+        // Obtener citas filtradas por nombre
         List<Cita> citas = (List<Cita>) service.citasFindByName(name);
-        model.addAttribute("citas", citas);
+
+        // Si se selecciona "todas", devolver todas las citas del paciente
+        if (status.equals("todas")) {
+            model.addAttribute("citas", citas);
+            return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
+        }
+
+        // Inicializar lista filtrada
+        List<Cita> citas2 = new ArrayList<>();
+
+        // Filtrar citas por estado
+        for (Cita cita : citas) {
+            if (cita.getEstado().equalsIgnoreCase(status)) {
+                citas2.add(cita);
+            }
+        }
+
+        model.addAttribute("citas", citas2);
         return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
+
 
     @PostMapping("/attendCita")
     public String actualizarEstadoCita(@RequestParam("idCita") int id, @RequestParam("action") String action) {

@@ -17,10 +17,11 @@
                 <label for="status">Status</label>
             </div>
             <div class = "inp alig_center contenedorStatusPatient2"><!-- combobox status -->
-                <select id="status">
-                    <option value="all">All</option>
-                    <option value="pending">Pending</option>
-                    <option value="attended">Attended</option>
+                <select id="status" name="status">
+                    <option value="todas">All</option>
+                    <option value="cancelada">cancelada</option>
+                    <option value="completada">completada</option>
+                    <option value="confirmada">confirmada</option>
                 </select>
             </div>
         </div>
@@ -40,24 +41,24 @@
     </div>
     </form>
 
-    <form th:action="@{/presentation/citas/attendCita}" method="post">
-        <!-- Recorremos todas las citas -->
-        <div class="row spaceEvenly" th:each="c: ${citas}">
+    <!-- Recorremos todas las citas -->
+    <div class="row spaceEvenly" th:each="c: ${citas}">
+        <div class="d_flex just_cont alig_center marg_der"> <!-- Foto -->
+            <i class="fa-solid fa-user"></i>
+            <p th:text="${c.getPaciente().getUsuarios().getNombre()}"></p>
+        </div>
 
-            <div class="d_flex just_cont alig_center marg_der"> <!-- Foto -->
-                <i class="fa-solid fa-user"></i>
-                <p th:text="${c.getPaciente().getUsuarios().getNombre()}"></p>
-            </div>
+        <div class="d_flex just_cont alig_center marg_der"><!-- Fecha -->
+            <p th:text="${c.getFechaCreacion()}"></p>
+        </div>
 
-            <div class="d_flex just_cont alig_center marg_der"><!-- Fecha -->
-                <p th:text="${c.getFechaCreacion()}"></p>
-            </div>
+        <div><!-- status -->
+            <p th:text="${c.getEstado()}"></p>
+        </div>
 
-            <div><!-- status -->
-                <p th:text="${c.getEstado()}"></p>
-            </div>
-
-            <div class="row"><!-- Attend / Cancel -->
+        <div class="row"><!-- Attend / Cancel -->
+            <!-- Cada cita tiene su propio formulario -->
+            <form th:action="@{/presentation/citas/attendCita}" method="post">
                 <!-- Input oculto para enviar el ID de la cita -->
                 <input type="hidden" name="idCita" th:value="${c.id}">
 
@@ -65,12 +66,11 @@
                     <button type="submit" name="action" value="attend" class="btn attend">✔ Attend</button>
                     <button type="submit" name="action" value="cancel" class="btn cancel">✖ Cancel</button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-
     </div>
-    </form>
+
+</div>
 
 
 
