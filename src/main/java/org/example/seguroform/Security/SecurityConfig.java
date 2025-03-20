@@ -21,13 +21,14 @@ public class SecurityConfig {
                                 "/presentation/citas/confirmarCita", "/presentation/citas/showCitas",
                                 "/presentation/confirmarCita/ViewconfirmarCita","/presentation/medicoGestionCitas/ViewmedicoGestionCitas",
                                 "/presentation/medicos/confirm/**","/presentation/medicoGestionCitas/ViewmedicoGestionCitas",
-                                "/presentation/citas/searchPatName",
+                                "/presentation/citas/searchPatName","/presentation/citas/showHPC", "/presentation/citas/searchDrName",
                                 "/presentation/citas/actualizarEstadoCita","/presentation/citas/attendCita",
                                 "/presentation/usuarios/loginWrong","/presentation/usuarios/register",
                                 "/presentation/usuarios/userExists","/presentation/usuarios/userRegister",
                                 "/presentation/administradores/about", "/presentation/aboutUs/aboutUs"
                                 ,"/presentation/medicos/showExtendido", "/presentation/buscarCita/ViewBuscarHorarioExtendido"
-                                ,"/presentation/medicos/search", "/presentation/medicos/showFilter").permitAll()
+                                ,"/presentation/medicos/search", "/presentation/medicos/showFilter","/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas"
+).permitAll()
                 ).formLogin(customizer -> customizer
                         .loginPage("/presentation/buscarCita/ViewbuscarCita").permitAll()).csrf(customizer -> customizer.disable());
         return http.build();

@@ -21,6 +21,11 @@ public class controller {
         return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
 
+    @GetMapping("/showHPC")
+    public String showHPC(Model model) {
+        return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
+    }
+
     @GetMapping("/confirmarCita")
     public String confirmarCita(Model model) {
         return "/presentation/confirmarCita/ViewConfirmarCita";
@@ -81,6 +86,32 @@ public class controller {
             service.citaUpdate(cita);
         }
         return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
+    }
+
+
+    @GetMapping("/searchDrName")
+    public String searchDrName(@RequestParam("doctor") String name, @RequestParam("status") String status, Model model) {
+        // Obtener citas filtradas por nombre
+        List<Cita> citas = (List<Cita>) service.citasFindByDoctor(name);
+
+        // Si se selecciona "todas", devolver todas las citas del paciente
+        if (status.equals("todas")) {
+            model.addAttribute("citasPHC", citas);
+            return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
+        }
+
+        // Inicializar lista filtrada
+        List<Cita> citas2 = new ArrayList<>();
+
+        // Filtrar citas por estado
+        for (Cita cita : citas) {
+            if (cita.getEstado().equalsIgnoreCase(status)) {
+                citas2.add(cita);
+            }
+        }
+
+        model.addAttribute("citasPHC", citas2);
+        return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
     }
 
 }

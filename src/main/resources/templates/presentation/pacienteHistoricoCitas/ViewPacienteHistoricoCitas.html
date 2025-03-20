@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/presentation/fragments :: head}">
+<body>
+<header th:replace="~{/presentation/fragments :: header}"></header>
+
+<div class = "column medicoGestionCitas">   <!-- 8 PHC, se usa casi lo mismo que MGC -->
+
+    <div class = "row tituloDoctorAppointments"> <!-- Nombre del paciente -->
+        <p>Doctor - </p> <label class = "nombreDoctorTitulo">NombrePaciente</label> <p> - appointment history</p>
+    </div>
+
+    <form th:action="@{/presentation/citas/searchDrName}" method="get">
+        <div class = "row"> <!-- Menu Status(combobox/select), Doctor(input text), Search (boton) -->
+            <div class = "row"><!-- status -->
+                <div class = "contenedorStatusPatient info_inp"><!-- status -->
+                    <label for="status">Status</label>
+                </div>
+                <div class = "inp alig_center contenedorStatusPatient2"><!-- combobox status -->
+                    <select id="status" name="status">
+                        <option value="todas">All</option>
+                        <option value="cancelada">cancelada</option>
+                        <option value="completada">completada</option>
+                        <option value="confirmada">confirmada</option>
+                        <option value="pendiente">pendiente</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class = "row"><!-- doctor -->
+                <div class = "contenedorStatusPatient info_inp"><!-- doctor -->
+                    <label for="doctorname">Doctor</label>
+                </div>
+                <div class = "inp alig_center contenedorStatusPatient2"><!-- submit doctor -->
+                    <input type="text" name="doctor" id="doctorname" placeholder="Doctor ID">
+                </div>
+            </div>
+
+            <div><!-- search button -->
+                <button type = "submit" class = "button_search alig_center">Search</button>
+            </div>
+        </div>
+    </form>
+
+
+
+    <!-- Recorremos todas las citas -->
+    <div class="row spaceEvenly" th:each="c: ${citasPHC}">
+        <div class="spaceEvenly"> <!-- Foto -->
+            <i class="fa-solid fa-user"></i>
+            <p th:text="${c.getMedico().getUsuarios().getNombre()}"></p>
+        </div>
+
+        <div class="spaceEvenly"><!-- Fecha -->
+            <p th:text="${c.getFechaCreacion()}"></p>
+        </div>
+
+        <div class="row marg_der"><!-- circulo de estado-->
+            <div class="statusPHC" th:text="${c.getEstado()}" th:classappend="${c.getEstado()}"></div>
+        </div>
+
+        <!-- Mostrar el botón SOLO si la cita está completada -->
+        <div class = "marg_izq lineHeightLow" th:if="${c.getEstado() == 'completada'}">
+            <a th:action="@{/presentation/citas/verNotas}" class="btn view">View</a>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+<footer th:replace="~{/presentation/fragments :: footer}"></footer>
+
+</body>
+</html>
