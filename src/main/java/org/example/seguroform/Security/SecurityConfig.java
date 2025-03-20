@@ -22,7 +22,11 @@ public class SecurityConfig {
                                 "/presentation/confirmarCita/ViewconfirmarCita","/presentation/medicoGestionCitas/ViewmedicoGestionCitas",
                                 "/presentation/medicos/confirm/**", "/presentation/administadores/about",
                                 "/presentation/aboutUs/aboutUs", "/presentation/medicos/showExtendido",
-                                "/presentation/buscarCita/ViewBuscarHorarioExtendido").permitAll()
+                                "/presentation/buscarCita/ViewBuscarHorarioExtendido","/presentation/medicoGestionCitas/ViewmedicoGestionCitas",
+                                "/presentation/citas/searchPatName",
+                                "/presentation/citas/actualizarEstadoCita","/presentation/citas/attendCita",
+                                "/presentation/usuarios/loginWrong","/presentation/usuarios/register",
+                                "/presentation/usuarios/userExists","/presentation/usuarios/userRegister").permitAll()
                 ).formLogin(customizer -> customizer
                         .loginPage("/presentation/buscarCita/ViewbuscarCita").permitAll()).csrf(customizer -> customizer.disable());
         return http.build();

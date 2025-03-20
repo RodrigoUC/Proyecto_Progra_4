@@ -38,14 +38,14 @@ public class controller {
 //    @GetMapping("/show2")
 //    public String show2(Model model) {
 //        model.addAttribute("citas", service.citaFindAll());
-//        return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
+//        return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
 //    }
 
     @GetMapping("/searchPatName") // No necesita {patient} porque @RequestParam busca ?patient=valor en url
     public String searchPatName(@RequestParam("patient") String name, Model model) {
         List<Cita> citas = (List<Cita>) service.citasFindByName(name);
         model.addAttribute("citas", citas);
-        return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
+        return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
 
     @PostMapping("/attendCita")
@@ -59,7 +59,7 @@ public class controller {
             }
             service.citaUpdate(cita);
         }
-        return "/presentation/medicoGestionCitas/ViewmedicoGestionCitas";
+        return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
 
 }
