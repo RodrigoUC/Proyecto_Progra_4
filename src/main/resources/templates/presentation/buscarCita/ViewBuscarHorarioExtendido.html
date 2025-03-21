@@ -33,10 +33,12 @@
         </div>
     </div>
 
-    <div class="dates-container column">
-        <span class="date" th:text="*{getFecha()}"></span>
-        <div class="times-container" th:each="slot : *{slots}">
-            <a th:href="@{/presentation/citas/showConfirmar}"><span class="time-slot" th:text="${slot.getHoraInicio()}"></span></a>
+    <div class="dates-container column" th:each="dia : ${medico.diasDeTrabajo()}">
+        <span class="date" th:text="${#temporals.format(dia, 'dd/MM/yyyy')}"></span>
+        <div class="appointments-container">
+            <div class="times-container" th:each="cita : ${medico.fechaCitas(dia)}">
+                <a th:href="@{/presentation/citas/showConfirmar}"><span class="time-slot" th:text="${#temporals.format(cita.fechaCreacion, 'HH:mm')}"></span></a>
+            </div>
         </div>
     </div>
 

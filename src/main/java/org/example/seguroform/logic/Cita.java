@@ -54,11 +54,12 @@ public class Cita {
     public Cita(){
     }
 
-    public Cita(Medico med, Slot sl, String est){
+    public Cita(Medico med, Slot sl, String est, Instant fechaCreacion){
         this.medico = med;
         this.slot = sl;
         this.estado = est;
         this.notas = " ";
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Integer getId() {

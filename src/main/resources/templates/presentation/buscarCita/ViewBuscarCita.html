@@ -33,7 +33,7 @@
   </form>
 
   <div class="citas-container row" th:each="m : ${medicos}" th:if="${not #lists.isEmpty(medicos)}">
-    <div>
+    <div class="">
       <div class="doctor-info">
         <div>
           <img th:src="${m.getFoto()}" alt="Imagen medico">
@@ -57,19 +57,20 @@
       </div>
     </div>
 
-    <div class="dates-container column">
-      <span class="date" th:text="${m.getFecha()}"></span>
-      <div class="times-container" th:each="slot : ${m.slots}">
-        <a th:href="@{/presentation/citas/showConfirmar}"><span class="time-slot" th:text="${slot.getHoraInicio()}"></span></a>
+    <div class="dates-container column" th:each="dia : *{m.diasDeTrabajo()}">
+      <span class="date" th:text="${#temporals.format(dia, 'dd/MM/yyyy')}"></span>
+      <div class="appointments-container">
+        <div class="times-container" th:each="cita : *{m.fechaCitas(dia)}">
+          <a th:href="@{/presentation/citas/showConfirmar}"><span class="time-slot" th:text="${#temporals.format(cita.fechaCreacion, 'HH:mm')}"></span></a>
+        </div>
       </div>
     </div>
 
     <div class="schedule-container">
-      <form class="esp_go_back" action="/presentation/medicos/showExtendido" method="POST" th:object="${medicoSearch}">
+      <form action="/presentation/medicos/showExtendido" method="POST" th:object="${medicoSearch}">
         <input class="no-show" type="hidden" name="id" th:value="${m.id}">
         <button type="submit" class="schedule-button" name="schedule" value="schedule" >Schedule <span class="orange-icon">🡲</span></button>
       </form>
-
     </div>
 
   </div>

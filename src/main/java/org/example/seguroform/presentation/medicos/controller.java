@@ -100,11 +100,6 @@ public class controller {
         return "/presentation/buscarCita/ViewBuscarCita";
     }
 
-    @GetMapping("/confirm/{id}")
-    public String confirm(@PathVariable("id") String id, Model model) {
-        model.addAttribute("medico", service.medicoGet(id));
-        return "/presentation/confirmarCita/ViewConfirmarCita";
-    }
 
 //     @GetMapping("/create")
 //    public String createMedico(@ModelAttribute Medico medico) {

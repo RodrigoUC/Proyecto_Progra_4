@@ -5,12 +5,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.cglib.core.Local;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "medicos")
@@ -168,22 +171,53 @@ public class Medico {
     El slot hay que hacerle un each para que muestre las fechas
     Dentro de cada slot se debe hacer un each para las citas
      */
-    public List<Cita> fechaCitas(){
-        LocalDate date = LocalDate.now();
+
+    public List<LocalDate> diasDeTrabajo(){
+        Set<LocalDate> diasUnicos = new HashSet<>(); // Usamos Set para evitar duplicados
+        LocalDate hoy = LocalDate.now();
+
+        for (Slot s : this.slots) {
+            int diaSemana = s.getDia(); // Día de la semana (1 = Lunes, ..., 7 = Domingo)
+
+            // Calculamos la próxima fecha correspondiente a ese día de la semana
+            LocalDate fecha = hoy.with(java.time.temporal.TemporalAdjusters.nextOrSame(java.time.DayOfWeek.of(diaSemana)));
+            diasUnicos.add(fecha); // Agregar la fecha al conjunto
+        }
+
+        // Convertimos a lista si es necesario
+        List<LocalDate> local = new ArrayList<>(diasUnicos);
+        Collections.sort(local);
+
+        return local;
+    }
+
+    public List<Cita> fechaCitas(LocalDate actual){
+        List<LocalDate> dias = diasDeTrabajo();
         List<Cita> citas = new ArrayList<>();
-        int dia = date.getDayOfWeek().getValue();
-        LocalDateTime t;
-        LocalDateTime et;
-        for(Slot s : this.slots){
-            if(s.getDia() == dia){
-                t = date.atTime(s.getHoraInicio().getHour(),0);
-                et = date.atTime(s.getHoraFin().getHour(),0);
-                while(t.isBefore(et)){
-                    citas.add(new Cita(this, s, "pendiente"));
-                    t = t.plusMinutes(frecuenciaCitas);
+
+        for (LocalDate date : dias) { // Iterar sobre cada día de trabajo
+            for (Slot s : this.slots) { // Iterar sobre cada slot
+                if (s.getDia() == date.getDayOfWeek().getValue()
+                        && Objects.equals(this.id, s.getMedico().getId())
+                        && actual.isEqual(date)) {
+                    // Crear LocalDateTime usando el LocalDate actual y la hora del slot
+                    LocalDateTime t = date.atTime(s.getHoraInicio().getHour(), 0);
+                    LocalDateTime et = date.atTime(s.getHoraFin().getHour(), 0);
+
+                    // Generar citas en el rango de tiempo
+                    while (t.isBefore(et)) {
+                        // Convertir LocalDateTime a Instant
+                        Instant fechaCreacion = t.atZone(ZoneId.systemDefault()).toInstant();
+
+                        // Crear la cita con el nuevo parámetro
+                        citas.add(new Cita(this, s, "pendiente", fechaCreacion));
+
+                        t = t.plusMinutes(frecuenciaCitas);
+                    }
                 }
             }
         }
+
         return citas;
     }
 }
