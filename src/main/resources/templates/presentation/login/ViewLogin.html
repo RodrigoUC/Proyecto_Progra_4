@@ -35,7 +35,7 @@
             </div>
         </div>
         <div th:if="${error != null}" class="error">
-            <h3>Credenciales incorrectas</h3>
+            <h3 th:text="${error}"></h3>
         </div>
 
         <div class ="d_flex just_cont cuerpo_login2" >

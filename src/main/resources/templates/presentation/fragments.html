@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:href="http://www.w3.org/1999/xhtml">
 
 <head>
     <link rel="stylesheet" href="/css/buscarCita.css">
@@ -78,12 +78,13 @@
                 <ul>
                     <li><p>Op 1</p></li>
                     <li><p>Op 2</p></li>
-                    <li><p>Op 3</p></li>
+                    <li><a href="/presentation/usuarios/logOut" class ="col_red">Log Out</a></li>
                 </ul>
             </div>
 
         </div>
 
+        <div class = "opc_header alig_center" th:if="${session.usuario != null and session.usuario.rol == 'admin'}"><a th:href="@{/presentation/administradores/showDoctors}">Aprobar Medicos</a></div>
         <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/showCitas}">Citas</a></div>
         <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/showHPC}">HistoricoP</a></div>
 <!--        <div class = "opc_header alig_center"><a th:href="@{/presentation/citas/show2}">Citas</a></div>-->

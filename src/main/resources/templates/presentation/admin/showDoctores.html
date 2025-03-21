@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/presentation/fragments :: head}">
+
+<body>
+<header th:replace="~{/presentation/fragments :: header}"></header>
+
+<div class = "cuerpo_buscar_cita column">
+<div class="row citas-container" th:each="m : ${medicos}" th:if="${not #lists.isEmpty(medicos)}">
+    <div>
+        <div class="doctor-info">
+            <div>
+                <img th:src="${m.getFoto()}" alt="Imagen medico">
+            </div>
+            <div>
+                <div class="row adjust_anchor">
+                    <p class="doctor-name" th:text="${m.getUsuarios().getNombre()}"></p>
+                    <p class="doctor-costo" th:text="${m.getCostoConsulta()}"></p>
+                </div>
+                <p class="doctor-specialty" th:text="${m.getEspecialidad()}"></p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="hospital-info">
+            <span th:text="${m.getLocalidad()}"></span>
+        </div>
+    </div>
+
+    <div class="dates-container column">
+        <span class="date" th:text="${m.getFecha()}"></span>
+        <div class="times-container" th:each="slot : ${m.slots}">
+            <span class="time-slot" th:text="${slot.getHoraInicio()}"></span>
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+<footer th:replace="~{/presentation/fragments :: footer}"></footer>
+</body>
+</html>
