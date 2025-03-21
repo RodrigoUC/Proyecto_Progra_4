@@ -23,7 +23,8 @@ create table if not exists Pacientes (
 create table if not exists Medicos (
 	id 				varchar(40),
 	especialidad	varchar(50) not null,
-	localidad		varchar(100) not null,
+	localidad		varchar(75) not null,
+	hospital		varchar(100) not null,
 	costo_consulta	float not null,
 	frecuencia_citas int not null,
 	foto			varchar(255) not null,
@@ -54,6 +55,7 @@ create table if not exists Citas (
 	estado		enum('pendiente','confirmada','completada','cancelada') default 'pendiente',
 	notas		text,
 	fecha_creacion datetime	default current_timestamp,
+	reservada	boolean default false,
 	Primary key (id)
 );
 
@@ -80,9 +82,9 @@ INSERT INTO Pacientes (id, telefono, direccion) VALUES
 ('u004', '8888-2222', 'Calle 2, Heredia');
 
 -- Inserts para Medicos
-INSERT INTO Medicos (id, especialidad, localidad, costo_consulta, frecuencia_citas, foto, presentacion) VALUES
-('u002', 'Cardiologia', 'San Juan de Dios @ San Jose', 50000, 60,'/images/medica.png', 'Es importante mantener un buen ritmo cardiaco.'),
-('u005', 'Dermatologia', 'Hospital San Rafael @ Alajuela', 45000, 30, '/images/medico.png', 'Siempre en busca del cuidado de la piel para mis pacientes.');
+INSERT INTO Medicos (id, especialidad, localidad, hospital, costo_consulta, frecuencia_citas, foto, presentacion) VALUES
+('u002', 'Cardiologia', 'San Jose', 'Hospital San Juan de Dios', 50000, 60,'/images/medica.png', 'Es importante mantener un buen ritmo cardiaco.'),
+('u005', 'Dermatologia', 'Alajuela', 'Hospital San Rafael', 45000, 30, '/images/medico.png', 'Siempre en busca del cuidado de la piel para mis pacientes.');
 
 -- Inserts para Administradores
 INSERT INTO Administradores (id, departamento) VALUES

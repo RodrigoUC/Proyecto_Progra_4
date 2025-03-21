@@ -82,7 +82,7 @@ public class Service {
     }
 
     public Medico medicoGet(String id){
-        return medicoRepository.findById(id).orElse(null);
+        return medicoRepository.findById(id).orElse(new Medico());
     }
 
     //Administradores
@@ -125,6 +125,10 @@ public class Service {
     }
     public Cita citaFindById(Integer id) {
         return citaRepository.findById(id).orElse(null);
+    }
+
+    public void citaActualizar(Cita cita){
+
     }
 
     public void citaUpdate(Cita cita) {

@@ -323,9 +323,17 @@ input[type="text"] {
     border: none;
 }
 
-.arrow-button{
+.no-show{
+    display: none;
+}
+
+.orange-icon{
     color: #d18c40;
     font-weight: bold;
+}
+
+.red-icon{
+    color: red;
 }
 
 .schedule-button:hover {

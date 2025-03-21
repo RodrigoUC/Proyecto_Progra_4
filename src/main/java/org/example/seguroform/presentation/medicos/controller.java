@@ -29,32 +29,30 @@ public class controller {
         return medicosSearch;
     }
 
-    @GetMapping("/create")
-    public String createMedico(@ModelAttribute Medico medico) {
-        service.medicoAdd(medico);
-        return "redirect:/presentation/login/ViewLogin"; // Hay que cambiar las rutas
-    }
-    @GetMapping("/delete/{id}")
-    public String deleteMedico(@PathVariable("id") String id) {
-        service.medicoDel(id);
-        return "redirect:/presentation/login/ViewLogin";
+    @ModelAttribute("medicoSearch")
+    public Medico medicoSearch() {
+        Medico medicoSearch = new Medico();
+        medicoSearch.setId("");
+        return medicoSearch;
     }
 
-    @GetMapping("/showExtendido")
-    public String showExtendido(Model model) {
-        Iterable<Medico> med = service.medicoFindAll();
+
+    @PostMapping("/showExtendido")
+    public String showExtendido(@ModelAttribute("medicoSearch") Medico medicoSearch, Model model) {
+        Medico med = service.medicoGet(medicoSearch.getId());
         Iterable<Slot> slot = service.slotFindAll();
-        this.setSlots(slot, med);
-        for(Medico medico : med) {
-            List<Slot> sl = medico.getSlots();
-            System.out.println(medico.getUsuarios().getNombre());
-            for(Slot s: sl){
-                System.out.println(s.getHoraInicio());
+
+        List<Slot> arr = new ArrayList<>();
+        for (Slot sl : slot) {
+            if (med.getId().equals(sl.getMedico().getId())) {
+                arr.add(sl);
             }
         }
+        med.setSlots(arr);
+
 
         model.addAttribute("citas", service.citaFindAll());
-        model.addAttribute("medicos", service.medicoFindAll());
+        model.addAttribute("medico", med);
         return "/presentation/buscarCita/ViewBuscarHorarioExtendido";
     }
 
@@ -107,6 +105,17 @@ public class controller {
         model.addAttribute("medico", service.medicoGet(id));
         return "/presentation/confirmarCita/ViewConfirmarCita";
     }
+
+//     @GetMapping("/create")
+//    public String createMedico(@ModelAttribute Medico medico) {
+//        service.medicoAdd(medico);
+//        return "redirect:/presentation/login/ViewLogin"; // Hay que cambiar las rutas
+//    }
+//    @GetMapping("/delete/{id}")
+//    public String deleteMedico(@PathVariable("id") String id) {
+//        service.medicoDel(id);
+//        return "redirect:/presentation/login/ViewLogin";
+//    }
 
     public void setSlots(Iterable<Slot> slots, Iterable<Medico> medicos){
         for(Medico medico : medicos) {

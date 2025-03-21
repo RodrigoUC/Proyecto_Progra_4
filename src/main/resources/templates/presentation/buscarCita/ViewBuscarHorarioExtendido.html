@@ -4,42 +4,44 @@
 <body>
 <header th:replace="~{/presentation/fragments :: header}"></header>
 
-<div class="citas-container row" th:each="m: ${medicos}">
+<div class="citas-container row" th:object="${medico}">
 
 <div>
-    <button class="schedule-button"><span class="arrow-button">🡰</span> Prev</button>
+    <button class="schedule-button"><span class="orange-icon">🡰</span> Prev</button>
 </div>
     <div>
         <div class="doctor-info">
             <div>
-                <img th:src="${m.getFoto()}" alt="Imagen medico">
+                <img th:src="*{foto}" alt="Imagen medico">
             </div>
             <div>
                 <div class="row">
-                    <p class="doctor-name" th:text="${m.getUsuarios().getNombre()}"></p>
-                    <p class="doctor-costo" th:text="${m.getCostoConsulta()}"></p>
+                    <p class="doctor-name" th:text="*{usuarios.nombre}"></p>
+                    <p class="doctor-costo" th:text="*{costoConsulta}"></p>
                 </div>
-                <p class="doctor-specialty" th:text="${m.getEspecialidad()}"></p>
+                <p class="doctor-specialty" th:text="*{especialidad}"></p>
             </div>
 
         </div>
 
         <hr>
 
-        <div class="hospital-info">
-            <span th:text="${m.getLocalidad()}"></span>
+        <div class="hospital-info adjust_anchor">
+            <span th:text="*{getHospital()}"></span>
+            <span class="orange-icon">&nbsp;@&nbsp; </span>
+            <span th:text="*{getLocalidad()}"></span>
         </div>
     </div>
 
     <div class="dates-container column">
-        <span class="date" th:text="${m.getFecha()}"></span>
-        <div class="times-container" th:each="slot : ${m.slots}">
-            <span class="time-slot" th:text="${slot.getHoraInicio()}"></span>
+        <span class="date" th:text="*{getFecha()}"></span>
+        <div class="times-container" th:each="slot : *{slots}">
+            <a th:href="@{/presentation/citas/showConfirmar}"><span class="time-slot" th:text="${slot.getHoraInicio()}"></span></a>
         </div>
     </div>
 
     <div>
-        <button class="schedule-button">Next <span class="arrow-button">🡲</span></button>
+        <button class="schedule-button">Next <span class="orange-icon">🡲</span></button>
     </div>
 
 </div>

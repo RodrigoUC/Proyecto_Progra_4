@@ -6,12 +6,9 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import org.example.seguroform.logic.Slot;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +31,15 @@ public class Medico {
     @Column(name = "especialidad", nullable = false, length = 50)
     private String especialidad;
 
+    @Size(max = 75)
+    @NotNull
+    @Column(name = "localidad", nullable = false, length = 75)
+    private String localidad;
+
     @Size(max = 100)
     @NotNull
-    @Column(name = "localidad", nullable = false, length = 100)
-    private String localidad;
+    @Column(name = "hospital", nullable = false, length = 100)
+    private String hospital;
 
     @NotNull
     @Column(name = "costo_consulta", nullable = false)
@@ -65,6 +67,19 @@ public class Medico {
 
     public void setSlots(List<Slot> slots) {
         this.slots = slots;
+    }
+
+    public Medico(){
+        this.slots = new ArrayList<>();
+        this.id = "";
+        this.usuarios = new Usuario();
+        this.especialidad = "";
+        this.localidad = "";
+        this.hospital = "";
+        this.costoConsulta = 0.0F;
+        this.frecuenciaCitas = 0;
+        this.foto = "";
+        this.presentacion = "";
     }
 
     public String getId() {
@@ -99,8 +114,16 @@ public class Medico {
         this.localidad = localidad;
     }
 
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
     public Integer getCostoConsulta() {
-        return this.costoConsulta.intValue();
+        return costoConsulta.intValue();
     }
 
     public void setCostoConsulta(Float costoConsulta) {

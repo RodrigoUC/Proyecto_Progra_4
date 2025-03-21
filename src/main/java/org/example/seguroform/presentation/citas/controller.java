@@ -1,12 +1,13 @@
 package org.example.seguroform.presentation.citas;
 
-import org.example.seguroform.logic.Cita;
-import org.example.seguroform.logic.Service;
+import org.example.seguroform.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +17,49 @@ public class controller {
     @Autowired
     private Service service;
 
+    @PostMapping("/confirmarCita")
+    public String confirmarCita(
+            @RequestParam("id_pac") String idPaciente, // Recibir el ID del paciente
+            @RequestParam("id_cit") Integer idCita
+            , Model model) {
+        Paciente pac = service.pacienteFindById(idPaciente);
+        Cita cit = service.citaFindById(idCita);
+
+        cit.setPaciente(pac);
+        cit.setReservada(true);
+
+        service.citaUpdate(cit); //Se actualiza
+
+        System.out.println("Se reservo exitosamente");
+        System.out.println(cit.getPaciente().getUsuarios().getNombre());
+
+        return "redirect:/presentation/medicos/show";
+    }
+
     @GetMapping("/showCitas")
     public String showCitas(Model model) {
         return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
 
-    @GetMapping("/confirmarCita")
+    @GetMapping("/showConfirmar")
     public String confirmarCita(Model model) {
+        Usuario usuario = new Usuario();
+        usuario.setId("u005");
+        usuario.setNombre("Pedro Jimenez");
+
+        Medico medico = new Medico();
+        medico.setUsuarios(usuario);
+        medico.setFoto("/images/medico.png");
+        medico.setHospital("Hospital San Rafael");
+        Instant fecha = Instant.now();
+
+        Cita cita = new Cita();
+        cita.setId(1);
+        cita.setFechaCreacion(fecha);
+        cita.setMedico(medico);
+
+        model.addAttribute("cita", cita);
+
         return "/presentation/confirmarCita/ViewConfirmarCita";
     }
 
