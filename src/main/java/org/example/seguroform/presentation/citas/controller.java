@@ -1,6 +1,7 @@
 package org.example.seguroform.presentation.citas;
 
-import org.example.seguroform.logic.*;
+import org.example.seguroform.logic.Cita;
+import org.example.seguroform.logic.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,12 @@ public class controller {
         return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
     }
 
+    @GetMapping("/showHPC")
+    public String showHPC(Model model) {
+        return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
+    }
+
+    @GetMapping("/confirmarCita")
     @GetMapping("/showConfirmar")
     public String confirmarCita(Model model) {
         Usuario usuario = new Usuario();
@@ -118,6 +125,32 @@ public class controller {
             service.citaUpdate(cita);
         }
         return "/presentation/medicoGestionCitas/ViewMedicoGestionCitas";
+    }
+
+
+    @GetMapping("/searchDrName")
+    public String searchDrName(@RequestParam("doctor") String name, @RequestParam("status") String status, Model model) {
+        // Obtener citas filtradas por nombre
+        List<Cita> citas = (List<Cita>) service.citasFindByDoctor(name);
+
+        // Si se selecciona "todas", devolver todas las citas del paciente
+        if (status.equals("todas")) {
+            model.addAttribute("citasPHC", citas);
+            return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
+        }
+
+        // Inicializar lista filtrada
+        List<Cita> citas2 = new ArrayList<>();
+
+        // Filtrar citas por estado
+        for (Cita cita : citas) {
+            if (cita.getEstado().equalsIgnoreCase(status)) {
+                citas2.add(cita);
+            }
+        }
+
+        model.addAttribute("citasPHC", citas2);
+        return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
     }
 
 }

@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+
 @org.springframework.stereotype.Controller("usuarios")
 @RequestMapping("/presentation/usuarios")
 public class controller {
@@ -48,7 +50,7 @@ public class controller {
             if(u.getRol().equals("paciente"))
                 return "redirect:/presentation/medicos/show";
             else
-                return "redirect:/presentation/usuarios/login";
+                return "redirect:/presentation/citas/showCitas";
         }
         else {
             return "redirect:/presentation/usuarios/loginWrong";
@@ -61,10 +63,11 @@ public class controller {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             usuario.setClave(passwordEncoder.encode(usuario.getClave()));
             service.usuarioAdd(usuario);
+            usuario.setFechaRegistro(Instant.now());
             if(usuario.getRol().equals("paciente"))
                 return "redirect:/presentation/usuarios/login";
             else
-                return "redirect:/presentation/usuarios/login";
+                return "redirect:/presentation/citas/showCitas";
         }
         else{
             return "redirect:/presentation/usuarios/userExists";

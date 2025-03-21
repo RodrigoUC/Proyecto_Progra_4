@@ -149,4 +149,20 @@ public class Service {
 
         return citasNombre; // Retorna la lista filtrada
     }
+
+    public Iterable<Cita> citasFindByDoctor(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            // Si no se proporciona un nombre, se retornan todas las citas
+            return citaRepository.findAll();
+        }
+        List<Cita> citasNombre = new ArrayList<>();
+        for (Cita cita : citaRepository.findAll()) {
+            if (cita.getMedico().getUsuarios().getNombre().equalsIgnoreCase(name)) {
+                citasNombre.add(cita);
+            }
+        }
+
+        return citasNombre; // Retorna la lista filtrada
+    }
+
 }

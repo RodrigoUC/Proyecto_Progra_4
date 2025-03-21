@@ -14,7 +14,7 @@ header{
     width: 100%;
     height: 15%;
 }
-div, form{
+div{
     /*border:1px solid black;*/
     margin: 10px;
 }
@@ -182,10 +182,10 @@ img.circularImage {
     border: 1px solid black; /* Borde para visualizar */
 }
 .marg_izq{
-   margin-left: 10px;
+   margin-left: -80px;
 }
 .marg_der{
-    margin-right: 0;
+    margin-right: 10%;
 }
 
 
@@ -225,7 +225,7 @@ img.circularImage {
 }
 
 
-/*===================MEDICO GESTION CITAS===================*/
+/*===================MEDICO GESTION CITAS / PACIENTE HISTORICO CITAS===================*/
 
 .medicoGestionCitas{
     position: relative;
@@ -261,12 +261,27 @@ img.circularImage {
     font-weight: bold;
     text-align: center;
 }
-.pending {
+.statusPHC {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.pendiente {
     background-color: yellow;
     color: black;
 }
-.attended {
-    background-color: green;
+.completada {
+    background-color: forestgreen;
+    color: white;
+}
+.cancelada {
+    background-color: red;
+    color: white;
+}
+.confirmada {
+    background-color: lightseagreen;
     color: white;
 }
 .buttons {
