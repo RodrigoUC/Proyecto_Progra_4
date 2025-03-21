@@ -39,6 +39,7 @@ public class controller {
     @GetMapping("/showDoctors")
     public String showDoctors(Model model) {
         Iterable<Medico> med = service.medicoFindAll();
+        System.out.println("Hola");
         Iterable<Slot> slot = service.slotFindAll();
         this.setSlots(slot, med);
         for(Medico medico : med) {

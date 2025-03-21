@@ -4,11 +4,18 @@ import jakarta.servlet.http.HttpSession;
 import org.example.seguroform.logic.Service;
 import org.example.seguroform.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Instant;
 
 @org.springframework.stereotype.Controller("usuarios")
@@ -16,6 +23,9 @@ import java.time.Instant;
 public class controller {
     @Autowired
     private Service service;
+
+    @Value("${picturesPath}")
+    private String picturesPath;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -105,6 +115,15 @@ public class controller {
     public String logOut(HttpSession session) {
         session.invalidate();
         return "redirect:/presentation/usuarios/login";
+    }
+
+
+    @GetMapping("/photo/{id}")
+    public ResponseEntity<Resource> photo(@PathVariable String id)throws Exception{
+        Path path= Paths.get(picturesPath+id);
+        Resource resource = new UrlResource(path.toUri());
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(resource);
+
     }
 
 }
