@@ -4,46 +4,44 @@
 <body>
 <header th:replace="~{/presentation/fragments :: header}"></header>
 
-<div class = "confirmarCita column sombra div2 lineHeightLow" th:object="${medico}">   <!-- muestra los datos del dr para confirmar o cancelar cita -->
+<div class = "confirmarCita column sombra div2 lineHeightLow" th:object="${cita}">   <!-- muestra los datos del dr para confirmar o cancelar cita -->
 
     <div class ="d_flex just_cont lineHeightLow">
-        <p><img src = "/images/img_user.jpeg" class = "circularImage"></p>
+        <p><img th:src = "${cita.medico.foto}" class = "circularImage"></p>
     </div>
 
     <div class ="d_flex just_cont row lineHeightLow">
-        <div class = "d_flex just_cont alig_center marg_der">
-        <i class="fa-solid fa-user"></i>
-        </div>
-        <div class = "marg_izq">
-<!--            th:field="*{usuarios.getNombre()}"-->
-        <p class = "lineHeight medico" >Nombre</p>
+        <div class="row">
+            <i class="fa-solid fa-user lightblue_icon"></i>
+            <p class = "lineHeight medico"  th:text="${cita.medico.usuarios.nombre}"></p>
         </div>
     </div>
     <div class ="d_flex just_cont row lineHeightLow">
-        <div class = "d_flex just_cont alig_center marg_der">
-            <i class="fa-solid fa-calendar"></i>
-        </div>
-        <div class = "marg_izq">
-            <p class = "lineHeight">Calendario</p>
+        <div class="row">
+            <i class="fa-solid fa-calendar lightblue_icon"></i>
+            <p class = "lineHeight" th:text="${cita.fechaCreacion}"></p>
         </div>
     </div>
 
     <div class ="d_flex just_cont row lineHeightLow">
-        <div class = "d_flex just_cont alig_center marg_der">
-            <i class="fa-solid fa-map"></i>
-        </div>
-        <div class = "marg_izq">
-<!--            th:field="*{localidad}"-->
-            <p class = "lineHeight" >Localizacion</p>
+
+        <div class="row">
+            <i class="fa-solid fa-map lightblue_icon"></i>
+            <p class = "lineHeight" th:text="${cita.medico.hospital}"></p>
         </div>
     </div>
 
-    <div class ="row just_cont lineHeightLow">
+    <div class ="row alig_center just_cont lineHeightLow">
+        <form action="/presentation/citas/confirmarCita" method="POST">
+
+            <input class="no-show" type="hidden" name="id_pac" th:value="${session.usuario.id}">
+
+            <input class="no-show" type="hidden" name="id_cit" th:value="${cita.id}">
+
+            <button type="submit" name="confirm" class="confirm-btn">Confirm</button>
+        </form>
         <div>
-            <button class="confirm-btn">Confirm</button>
-        </div>
-        <div>
-            <button class="confirm-btn">Cancel</button>
+            <a th:href="@{/presentation/medicos/show}"><button type="submit" name="cancel" class="confirm-btn">Cancel</button></a>
         </div>
 
     </div>

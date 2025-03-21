@@ -1,10 +1,10 @@
 package org.example.seguroform.presentation.medicos;
 
-import org.example.seguroform.logic.Cita;
-import org.example.seguroform.logic.Medico;
-import org.example.seguroform.logic.Service;
-import org.example.seguroform.logic.Slot;
+import jakarta.servlet.http.HttpSession;
+import org.example.seguroform.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,32 +29,30 @@ public class controller {
         return medicosSearch;
     }
 
-    @GetMapping("/create")
-    public String createMedico(@ModelAttribute Medico medico) {
-        service.medicoAdd(medico);
-        return "redirect:/presentation/login/ViewLogin"; // Hay que cambiar las rutas
-    }
-    @GetMapping("/delete/{id}")
-    public String deleteMedico(@PathVariable("id") String id) {
-        service.medicoDel(id);
-        return "redirect:/presentation/login/ViewLogin";
+    @ModelAttribute("medicoSearch")
+    public Medico medicoSearch() {
+        Medico medicoSearch = new Medico();
+        medicoSearch.setId("");
+        return medicoSearch;
     }
 
-    @GetMapping("/showExtendido")
-    public String showExtendido(Model model) {
-        Iterable<Medico> med = service.medicoFindAll();
+    @PostMapping("/showExtendido")
+    public String showExtendido(@ModelAttribute("medicoSearch") Medico medicoSearch, Model model) {
+
+        Medico med = service.medicoGet(medicoSearch.getId());
         Iterable<Slot> slot = service.slotFindAll();
-        this.setSlots(slot, med);
-        for(Medico medico : med) {
-            List<Slot> sl = medico.getSlots();
-            System.out.println(medico.getUsuarios().getNombre());
-            for(Slot s: sl){
-                System.out.println(s.getHoraInicio());
+
+        List<Slot> arr = new ArrayList<>();
+        for (Slot sl : slot) {
+            if (med.getId().equals(sl.getMedico().getId())) {
+                arr.add(sl);
             }
         }
+        med.setSlots(arr);
+
 
         model.addAttribute("citas", service.citaFindAll());
-        model.addAttribute("medicos", service.medicoFindAll());
+        model.addAttribute("medico", med);
         return "/presentation/buscarCita/ViewBuscarHorarioExtendido";
     }
 
@@ -108,6 +106,17 @@ public class controller {
         return "/presentation/confirmarCita/ViewConfirmarCita";
     }
 
+//     @GetMapping("/create")
+//    public String createMedico(@ModelAttribute Medico medico) {
+//        service.medicoAdd(medico);
+//        return "redirect:/presentation/login/ViewLogin"; // Hay que cambiar las rutas
+//    }
+//    @GetMapping("/delete/{id}")
+//    public String deleteMedico(@PathVariable("id") String id) {
+//        service.medicoDel(id);
+//        return "redirect:/presentation/login/ViewLogin";
+//    }
+
     public void setSlots(Iterable<Slot> slots, Iterable<Medico> medicos){
         for(Medico medico : medicos) {
             List<Slot> s = new ArrayList<>();
@@ -118,48 +127,6 @@ public class controller {
             }
             medico.setSlots(s);
         }
-    }
-
-    public List<Cita> fechaCitas(LocalDate date){
-        List<Cita> citas = new ArrayList<>();
-        int dia = date.getDayOfWeek().getValue();
-        LocalDateTime t;
-        LocalDateTime et;
-        for(Slot s : service.slotFindAll()){
-            if(s.getDia() == dia){
-                t = date.atTime(s.getHoraInicio().getHour(),0);
-                et = date.atTime(s.getHoraFin().getHour(),0);
-                while(t.isBefore(et)){
-                    citas.add(new Cita());
-                    t = t.plusMinutes(60);
-
-                }
-            }
-        }
-        return citas;
-    }
-
-    public List<LocalTime> horarios(Iterable<Medico> medicos, Iterable<Slot> slots){
-        List<LocalTime> horas = new java.util.ArrayList<>(List.of());
-        Integer frec;
-        LocalTime inic;
-        LocalTime fin;
-        for(Medico medico : medicos){
-            for(Slot slot : slots){
-                if(medico.getId().equals(slot.getMedico().getId())){
-                    frec = medico.getFrecuenciaCitas();
-                    inic = slot.getHoraInicio();
-                    fin = slot.getHoraFin();
-
-                    while(inic.isBefore(fin)) {
-                        horas.add(inic);
-                        inic = inic.plusMinutes(frec);
-                    }
-                    return horas;
-                }
-            }
-        }
-        return horas;
     }
 
 }

@@ -50,7 +50,9 @@
 
       <hr>
 
-      <div class="hospital-info">
+      <div class="hospital-info adjust_anchor">
+        <span th:text="${m.getHospital()}"></span>
+        <span class="orange-icon">&nbsp;@&nbsp; </span>
         <span th:text="${m.getLocalidad()}"></span>
       </div>
     </div>
@@ -58,13 +60,18 @@
     <div class="dates-container column">
       <span class="date" th:text="${m.getFecha()}"></span>
       <div class="times-container" th:each="slot : ${m.slots}">
-        <span class="time-slot" th:text="${slot.getHoraInicio()}"></span>
+        <a th:href="@{/presentation/citas/showConfirmar}"><span class="time-slot" th:text="${slot.getHoraInicio()}"></span></a>
       </div>
     </div>
 
-    <div class="schedule_container">
-      <a th:href="@{/presentation/medicos/showExtendido}"><button class="schedule-button">Schedule <span class="arrow-button">🡲</span></button></a>
+    <div class="schedule-container">
+      <form class="esp_go_back" action="/presentation/medicos/showExtendido" method="POST" th:object="${medicoSearch}">
+        <input class="no-show" type="hidden" name="id" th:value="${m.id}">
+        <button type="submit" class="schedule-button" name="schedule" value="schedule" >Schedule <span class="orange-icon">🡲</span></button>
+      </form>
+
     </div>
+
   </div>
 
 </div>

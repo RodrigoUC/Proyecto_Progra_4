@@ -47,7 +47,12 @@ public class Cita {
     @Column(name = "fecha_creacion")
     private Instant fechaCreacion;
 
-    public Cita() { }
+    @ColumnDefault("0")
+    @Column(name = "reservada")
+    private Boolean reservada;
+
+    public Cita(){
+    }
 
     public Cita(Medico med, Slot sl, String est){
         this.medico = med;
@@ -110,6 +115,14 @@ public class Cita {
 
     public void setFechaCreacion(Instant fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Boolean getReservada() {
+        return reservada;
+    }
+
+    public void setReservada(Boolean reservada) {
+        this.reservada = reservada;
     }
 
 }

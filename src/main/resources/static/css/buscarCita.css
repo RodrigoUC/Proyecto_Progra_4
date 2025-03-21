@@ -197,6 +197,11 @@ input[type="text"] {
     cursor: pointer;
 }
 
+.lightblue_icon{
+    color: #007bff;
+    margin-right: 15px;
+}
+
 .button_search:hover {
     background: #0056b3;
 }
@@ -264,7 +269,7 @@ input[type="text"] {
 .dates-container {
     display: flex;
     justify-content: space-between;
-    width: 55%;
+    width: 50%;
     margin-top: 10px;
     margin-left: 50px;
     margin-right: 50px;
@@ -307,7 +312,7 @@ input[type="text"] {
     display: flex;
     width: 20%;
     justify-content: right;
-    margin-right: 5%;
+    margin-right: 20px;
 }
 /* Botón de agendamiento */
 .schedule-button {
@@ -323,9 +328,17 @@ input[type="text"] {
     border: none;
 }
 
-.arrow-button{
+.no-show{
+    display: none;
+}
+
+.orange-icon{
     color: #d18c40;
     font-weight: bold;
+}
+
+.red-icon{
+    color: red;
 }
 
 .schedule-button:hover {
