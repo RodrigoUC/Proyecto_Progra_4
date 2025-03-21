@@ -1,7 +1,7 @@
 package org.example.seguroform.presentation.citas;
 
-import org.example.seguroform.logic.Cita;
-import org.example.seguroform.logic.Service;
+import jakarta.servlet.http.HttpSession;
+import org.example.seguroform.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,9 +47,13 @@ public class controller {
         return "/presentation/pacienteHistoricoCitas/ViewPacienteHistoricoCitas";
     }
 
-    @GetMapping("/confirmarCita")
     @GetMapping("/showConfirmar")
-    public String confirmarCita(Model model) {
+    public String confirmarCita(Model model, HttpSession session) {
+        // Verificar si ya inicio sesion
+        if (session.getAttribute("usuario") == null) {
+            return "redirect:/presentation/usuarios/login";
+        }
+
         Usuario usuario = new Usuario();
         usuario.setId("u005");
         usuario.setNombre("Pedro Jimenez");

@@ -1,10 +1,10 @@
 package org.example.seguroform.presentation.medicos;
 
-import org.example.seguroform.logic.Cita;
-import org.example.seguroform.logic.Medico;
-import org.example.seguroform.logic.Service;
-import org.example.seguroform.logic.Slot;
+import jakarta.servlet.http.HttpSession;
+import org.example.seguroform.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +36,9 @@ public class controller {
         return medicoSearch;
     }
 
-
     @PostMapping("/showExtendido")
     public String showExtendido(@ModelAttribute("medicoSearch") Medico medicoSearch, Model model) {
+
         Medico med = service.medicoGet(medicoSearch.getId());
         Iterable<Slot> slot = service.slotFindAll();
 
@@ -127,48 +127,6 @@ public class controller {
             }
             medico.setSlots(s);
         }
-    }
-
-    public List<Cita> fechaCitas(LocalDate date){
-        List<Cita> citas = new ArrayList<>();
-        int dia = date.getDayOfWeek().getValue();
-        LocalDateTime t;
-        LocalDateTime et;
-        for(Slot s : service.slotFindAll()){
-            if(s.getDia() == dia){
-                t = date.atTime(s.getHoraInicio().getHour(),0);
-                et = date.atTime(s.getHoraFin().getHour(),0);
-                while(t.isBefore(et)){
-                    citas.add(new Cita());
-                    t = t.plusMinutes(60);
-
-                }
-            }
-        }
-        return citas;
-    }
-
-    public List<LocalTime> horarios(Iterable<Medico> medicos, Iterable<Slot> slots){
-        List<LocalTime> horas = new java.util.ArrayList<>(List.of());
-        Integer frec;
-        LocalTime inic;
-        LocalTime fin;
-        for(Medico medico : medicos){
-            for(Slot slot : slots){
-                if(medico.getId().equals(slot.getMedico().getId())){
-                    frec = medico.getFrecuenciaCitas();
-                    inic = slot.getHoraInicio();
-                    fin = slot.getHoraFin();
-
-                    while(inic.isBefore(fin)) {
-                        horas.add(inic);
-                        inic = inic.plusMinutes(frec);
-                    }
-                    return horas;
-                }
-            }
-        }
-        return horas;
     }
 
 }

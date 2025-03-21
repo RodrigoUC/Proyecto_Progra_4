@@ -11,37 +11,32 @@
     </div>
 
     <div class ="d_flex just_cont row lineHeightLow">
-        <div class = "d_flex just_cont alig_center marg_der">
-        <i class="fa-solid fa-user"></i>
-        </div>
-        <div class = "marg_izq">
-        <p class = "lineHeight medico"  th:text="${cita.medico.usuarios.nombre}"></p>
+        <div class="row">
+            <i class="fa-solid fa-user lightblue_icon"></i>
+            <p class = "lineHeight medico"  th:text="${cita.medico.usuarios.nombre}"></p>
         </div>
     </div>
     <div class ="d_flex just_cont row lineHeightLow">
-        <div class = "d_flex just_cont alig_center marg_der">
-            <i class="fa-solid fa-calendar"></i>
-        </div>
-        <div class = "marg_izq">
+        <div class="row">
+            <i class="fa-solid fa-calendar lightblue_icon"></i>
             <p class = "lineHeight" th:text="${cita.fechaCreacion}"></p>
         </div>
     </div>
 
     <div class ="d_flex just_cont row lineHeightLow">
-        <div class = "d_flex just_cont alig_center marg_der">
-            <i class="fa-solid fa-map"></i>
-        </div>
-        <div class = "marg_izq">
+
+        <div class="row">
+            <i class="fa-solid fa-map lightblue_icon"></i>
             <p class = "lineHeight" th:text="${cita.medico.hospital}"></p>
         </div>
     </div>
 
-    <div class ="row just_cont lineHeightLow">
+    <div class ="row alig_center just_cont lineHeightLow">
         <form action="/presentation/citas/confirmarCita" method="POST">
 
-            <input type="hidden" name="id_pac" th:value="${session.usuario.id}">
+            <input class="no-show" type="hidden" name="id_pac" th:value="${session.usuario.id}">
 
-            <input type="hidden" name="id_cit" th:value="${cita.id}">
+            <input class="no-show" type="hidden" name="id_cit" th:value="${cita.id}">
 
             <button type="submit" name="confirm" class="confirm-btn">Confirm</button>
         </form>

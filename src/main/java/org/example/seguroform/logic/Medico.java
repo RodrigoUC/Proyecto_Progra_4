@@ -158,6 +158,16 @@ public class Medico {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yy"));
     }
 
+    public void mostrarDias(){
+        for(int i = 1; i<=7; i++){
+
+        }
+    }
+
+    /*
+    El slot hay que hacerle un each para que muestre las fechas
+    Dentro de cada slot se debe hacer un each para las citas
+     */
     public List<Cita> fechaCitas(){
         LocalDate date = LocalDate.now();
         List<Cita> citas = new ArrayList<>();
