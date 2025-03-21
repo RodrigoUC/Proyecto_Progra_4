@@ -46,11 +46,14 @@ public class controller {
         Usuario u = service.usuarioFindById(usuario.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if(u != null && passwordEncoder.matches(usuario.getClave(), u.getClave())){
+            //Medico activo, return que salga: usuario aun no activo
             session.setAttribute("usuario", u);
             if(u.getRol().equals("paciente"))
                 return "redirect:/presentation/medicos/show";
-            else
+            else if(u.getRol().equals("medico"))
                 return "redirect:/presentation/citas/showCitas";
+            else
+                return "redirect:/presentation/administradores/showDoctors";
         }
         else {
             return "redirect:/presentation/usuarios/loginWrong";
@@ -72,11 +75,12 @@ public class controller {
         else{
             return "redirect:/presentation/usuarios/userExists";
         }
+
     }
 
     @GetMapping("loginWrong")
     public String loginWrong(Model model){
-        model.addAttribute("error", "error");
+        model.addAttribute("error", "Credenciales Incorrectas");
         return "/presentation/login/ViewLogin";
     }
 
@@ -94,6 +98,12 @@ public class controller {
     @GetMapping("/delete/{id}")
     public String deleteUsuario(@PathVariable("id") String id) {
         service.usuarioDel(id);
+        return "redirect:/presentation/usuarios/login";
+    }
+
+    @GetMapping("/logOut")
+    public String logOut(HttpSession session) {
+        session.invalidate();
         return "redirect:/presentation/usuarios/login";
     }
 

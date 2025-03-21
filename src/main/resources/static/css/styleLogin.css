@@ -121,6 +121,12 @@ input[type="submit"] {
     border:none;
     border-radius: 1%;
 }
+input[type="submit"]:hover{
+    background: #0056b3 !important;
+}
+.col_red{
+    color:red;
+}
 
 input[type="text"], input[type="password"]{
     background-color: white;
@@ -282,9 +288,6 @@ font-size: 250%
     margin-left: 0;
     margin-right: 0;
 }
-.back_red{
-    background-color: red !important;
-}
 .login form {
 height: 70%;
     width: 80%;
@@ -347,4 +350,7 @@ height: 70%;
 /* Cambio de color al pasar el mouse por encima de cada opción */
 .menuDesplegable li:hover {
     background-color: #f2f2f2;
+}
+.back_red{
+    background-color: red !important;
 }
