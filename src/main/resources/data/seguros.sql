@@ -29,6 +29,7 @@ create table if not exists Medicos (
 	frecuencia_citas int not null,
 	foto			varchar(255) not null,
 	presentacion	text,
+    activo          TINYINT(1),
 	Primary key (id)
 );
 
@@ -82,9 +83,9 @@ INSERT INTO Pacientes (id, telefono, direccion) VALUES
 ('u004', '8888-2222', 'Calle 2, Heredia');
 
 -- Inserts para Medicos
-INSERT INTO Medicos (id, especialidad, localidad, hospital, costo_consulta, frecuencia_citas, foto, presentacion) VALUES
-('u002', 'Cardiologia', 'San Jose', 'Hospital San Juan de Dios', 50000, 60,'/images/medica.png', 'Es importante mantener un buen ritmo cardiaco.'),
-('u005', 'Dermatologia', 'Alajuela', 'Hospital San Rafael', 45000, 30, '/images/medico.png', 'Siempre en busca del cuidado de la piel para mis pacientes.');
+INSERT INTO Medicos (id, especialidad, localidad, hospital, costo_consulta, frecuencia_citas, foto, presentacion,activo) VALUES
+('u002', 'Cardiologia', 'San Jose', 'Hospital San Juan de Dios', 50000, 60,'/images/medica.png', 'Es importante mantener un buen ritmo cardiaco.',1),
+('u005', 'Dermatologia', 'Alajuela', 'Hospital San Rafael', 45000, 30, '/images/medico.png', 'Siempre en busca del cuidado de la piel para mis pacientes.',1);
 
 -- Inserts para Administradores
 INSERT INTO Administradores (id, departamento) VALUES

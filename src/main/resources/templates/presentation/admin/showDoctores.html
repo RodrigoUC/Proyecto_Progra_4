@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head th:replace="~{/presentation/fragments :: head}">
 
 <body>
@@ -34,6 +34,9 @@
         <div class="times-container" th:each="slot : ${m.slots}">
             <span class="time-slot" th:text="${slot.getHoraInicio()}"></span>
         </div>
+    </div>
+    <div class = "cont_but_hab d_flex just_cont alig_center" th:if="${m.activo == false}">
+        <a th:href="@{/presentation/administradores/updateDoctor/{id}(id=${m.id})}" class = "back_green div_but_hab d_flex alig_center just_cont">Habilitar</a>
     </div>
 
 </div>

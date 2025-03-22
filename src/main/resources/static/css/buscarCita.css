@@ -347,11 +347,26 @@ input[type="text"] {
     color: #d18c40;
     font-weight: bold;
 }
-
 .red-icon{
     color: red;
 }
-
 .schedule-button:hover {
     text-decoration: underline;
+}
+.cont_but_hab{
+    margin-left: auto;
+    width: 10%;
+}
+.div_but_hab{
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    color:white;
+}
+.back_green{
+    background-color: green !important;
+}
+
+.cont_but_hab a{
+    text-decoration: none;
 }

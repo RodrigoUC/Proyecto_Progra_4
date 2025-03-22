@@ -64,6 +64,17 @@ public class Medico {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Slot> slots; // ✅ Relación con la tabla "slots"
 
+    @Column(name = "activo")
+    private Boolean activo;
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
     public List<Slot> getSlots() {
         return slots;
     }
@@ -83,6 +94,7 @@ public class Medico {
         this.frecuenciaCitas = 0;
         this.foto = "";
         this.presentacion = "";
+        this.activo=false;
     }
 
     public String getId() {
